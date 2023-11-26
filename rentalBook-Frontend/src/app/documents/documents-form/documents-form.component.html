@@ -1,0 +1,45 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <ng-template info [ngIf]="true">
+
+                  <mat-form-field class="col-6">
+                    <mat-label>Γεωγραφικά Διαμερίσματα</mat-label>
+                    <mat-select formControlName="type_id">
+                      <mat-option *ngFor="let t of docTypes;let i=index" [value]="t.id">
+                        {{ t?.profiles?.el?.title ?? 'Μη Μεταφρασμένο '+i }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <div class="col-12">
+                    <mat-label>Εικονίδιο (Λοιπά Έγγραφα:)</mat-label>&nbsp;
+                    <app-document-upload [multiple]="true" formControlName="documents"></app-document-upload>
+                  </div>
+
+                  <br>
+
+                  <mat-form-field class="col-12">
+                    <mat-label>Σχόλια</mat-label>
+                    <textarea matInput formControlName="comments"> </textarea>
+                  </mat-form-field>
+
+                </ng-template>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</app-single-form>

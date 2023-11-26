@@ -1,0 +1,37 @@
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Αποτελέσματα: {{ V_ExchangeSrv.total_V_ExchangeSub.getValue()?.results ?? 0 }}</h6>
+</div>
+
+<app-table [dataSource]="data" [displayedColumns]="displayedColumns" [columns]="columns">
+</app-table>
+
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Συνολικά Αποτελέσματα: {{ V_ExchangeSrv.total_V_ExchangeSub.getValue()?.g_results ?? 0 }}</h6>
+</div>
+
+<ng-template #licence_plates_old_filter let-filter>
+  <app-vehicle-selector class="col-12" [clearBtn]="true" [label]="'Όχημα που αντικαταστάθηκε'"
+    [(ngModel)]="filter.value"></app-vehicle-selector>
+</ng-template>
+
+<ng-template #licence_plates_new_filter let-filter>
+  <app-vehicle-selector class="col-12" [clearBtn]="true" [label]="'Νέο όχημα'" [(ngModel)]="filter.value">
+  </app-vehicle-selector>
+</ng-template>
+
+<ng-template #rental_filter let-filter>
+  <app-rental-selector class="col-12" [clearBtn]="true" [label]="filter.label" [(ngModel)]="filter.value">
+  </app-rental-selector>
+</ng-template>
+
+
+<ng-template #date_filter let-filter>
+  <mat-label>Ημ. Αντικατάστασης</mat-label>
+  <!-- <input #input1 matInput (dateInput)="first(filter.value=$event.value.format('YYYY-MM-D'))"
+      [matDatepicker]="picker1">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker> -->
+  <app-datetimepicker class="col-12" #picker1 [(ngModel)]="filter.value"></app-datetimepicker>
+
+  <mat-icon class="col-1" *ngIf="picker1.value" (click)="clearDates1()">clear</mat-icon>
+</ng-template>

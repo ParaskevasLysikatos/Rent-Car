@@ -1,0 +1,9 @@
+<app-selector
+[params]="params"
+[optionTemplate]="subaccount"
+label="Πωλητής"
+></app-selector>
+
+<ng-template #subaccount let-option>
+   {{ option?.name }}
+</ng-template>

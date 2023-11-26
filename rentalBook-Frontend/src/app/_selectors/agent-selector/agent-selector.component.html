@@ -1,0 +1,14 @@
+<app-selector
+[params]="params"
+[optionTemplate]="optionTemplate"
+
+></app-selector>
+
+<ng-template  #optionTemplate let-option>
+   {{ option?.name }}
+   <span style="font-size:9px;" *ngIf="option?.company_id">
+   &nbsp;&nbsp;
+   (έχει ΑΦΜ)
+   </span>
+
+</ng-template>

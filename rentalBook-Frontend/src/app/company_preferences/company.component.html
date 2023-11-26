@@ -1,0 +1,187 @@
+<app-single-form [formGroup]="form" [canDelete]="false" [saveAndNew]="false" (onSubmit)="onSubmit()"
+  (keydown.enter)="$event.preventDefault()">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+                <mat-tab-group>
+                  <mat-tab>
+                    <ng-template mat-tab-label>
+                      Γενικά
+                    </ng-template>
+                    <div class="form-fields">
+                      <mat-form-field class="col-4 m-1">
+                        <mat-label>Όνομα Εταιρείας</mat-label>
+                        <input matInput formControlName="name">
+                      </mat-form-field>
+                      <mat-form-field class="col-4 m-1">
+                        <mat-label>Διακριτικός Τίτλος</mat-label>
+                        <input matInput formControlName="title">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Δραστηριότητα</mat-label>
+                        <input matInput formControlName="job">
+                      </mat-form-field>
+                      <mat-form-field class="col-4 m-1">
+                        <mat-label>ΑΦΜ</mat-label>
+                        <input matInput formControlName="afm">
+                      </mat-form-field>
+                      <mat-form-field class="col-4 m-1">
+                        <mat-label>ΔΟΥ</mat-label>
+                        <input matInput formControlName="doi">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Τηλέφωνο</mat-label>
+                        <input matInput formControlName="phone">
+                      </mat-form-field>
+                      <mat-form-field class="col-4 m-1">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                      </mat-form-field>
+                      <mat-form-field class="col-4 m-1">
+                        <mat-label>Website</mat-label>
+                        <input matInput formControlName="website">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Αρ. ΜΗΤΕ</mat-label>
+                        <input matInput formControlName="mite_number">
+                      </mat-form-field>
+                      <mat-form-field class="col-2 m-1">
+                        <mat-label>Ποσοστό ΦΠΑ</mat-label>
+                        <input matInput numeric decimals="0" formControlName="vat">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Δωρεάν Λεπτά Ενοικίασης</mat-label>
+                        <input matInput numeric decimals="0" formControlName="checkin_free_minutes">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-3">
+                        <mat-label>Διαθέσιμες μέρες Προσφοράς</mat-label>
+                        <input numeric decimals="0" matInput formControlName="quote_available_days">
+                      </mat-form-field>
+                      <mat-checkbox class="col-1" formControlName="show_rental_charges">Εμφάνιση ποσών στη μίσθωση
+                      </mat-checkbox>
+
+                      <br>
+
+                      <div class="row">
+                        <app-station-selector class="col-6 mt-5" #station formControlName="station_id">
+                        </app-station-selector>
+
+                        <mat-form-field class="col-6">
+                          <mat-label>Προεπιλεγμένη Τοποθεσία</mat-label>
+                          <app-place-selector #place [include]='includePlaces' [activeEditBtn]="true"
+                            formControlName="place">
+                          </app-place-selector>
+                        </mat-form-field>
+
+                      </div>
+
+
+                      <div class="row">
+
+                        <app-source-selector class="col" #sourceQ [label]="'Προεπιλεγμένη Πηγή για Προσφορές'"
+                          formControlName="quote_source_id"></app-source-selector>
+
+                        <app-source-selector class="col" #sourceB [label]="'Προεπιλεγμένη Πηγή για Κρατήσεις'"
+                          formControlName="booking_source_id"></app-source-selector>
+
+                        <app-source-selector class="col" #sourceR [label]="'Προεπιλεγμένη Πηγή για Μισθώσεις'"
+                          formControlName="rental_source_id"></app-source-selector>
+
+                      </div>
+
+
+
+
+                    </div>
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label>
+                      Ακολουθίες
+                    </ng-template>
+                    <div>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Προσφορά</mat-label>
+                        <input matInput formControlName="quote_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Κράτηση</mat-label>
+                        <input matInput formControlName="booking_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Μίσθωση</mat-label>
+                        <input matInput formControlName="rental_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Τιμολόγιο</mat-label>
+                        <input matInput formControlName="invoice_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Απόδειξη Λιανικής</mat-label>
+                        <input matInput formControlName="receipt_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Απόδειξη Είσπραξης</mat-label>
+                        <input matInput formControlName="payment_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Απόδειξη Εγγύησης</mat-label>
+                        <input matInput formControlName="pre_auth_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Απόδειξη Επιστροφής Χρημάτων</mat-label>
+                        <input matInput formControlName="refund_prefix">
+                      </mat-form-field>
+                      <mat-form-field class="col-3 m-1">
+                        <mat-label>Απόδειξη Επιστροφής Χρημάτων Εγγύησης</mat-label>
+                        <input matInput formControlName="refund_pre_auth_prefix">
+                      </mat-form-field>
+                    </div>
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label>
+                      Λεκτικά Εκτυπώσεων
+                    </ng-template>
+                    <div>
+                      <!-- <mat-form-field> -->
+                      <mat-label>Απόδειξη Επιστροφής Χρημάτων Εγγύησης</mat-label>
+                      <ng-template matTabContent>
+                        <h3>Εκτύπωση Μίσθωσης</h3>
+                        <label>Οικονομικοί Όροι</label>
+                        <editor formControlName="rental_rate_terms">
+                        </editor>
+                        <label>Κατάσταση οχήματος</label>
+                        <editor formControlName="rental_vehicle_condition">
+                        </editor>
+                        <label>GDPR</label>
+                        <editor formControlName="rental_gdpr">
+                        </editor>
+                        <h3>Εκτύπωση Τιμολογίου</h3>
+                        <label>Πρώτο πλαίσιο</label>
+                        <editor formControlName="invoice_first_box">
+                        </editor>
+                        <label>Δεύτερο πλαίσιο</label>
+                        <editor formControlName="invoice_second_box">
+                        </editor>
+                      </ng-template>
+                      <!-- </mat-form-field> -->
+                    </div>
+                  </mat-tab>
+                </mat-tab-group>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>

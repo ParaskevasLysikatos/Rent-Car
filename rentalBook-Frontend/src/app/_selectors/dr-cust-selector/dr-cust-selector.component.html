@@ -1,0 +1,7 @@
+<app-autocomplete-selector [optionTemplate]="driver" [params]="params"
+  [editBtn]="activeEditBtn" [addBtn]="addBtn" [phone]="phone">
+</app-autocomplete-selector>
+
+<ng-template #driver let-option>
+  {{  option?.full_name ?? null }}
+</ng-template>

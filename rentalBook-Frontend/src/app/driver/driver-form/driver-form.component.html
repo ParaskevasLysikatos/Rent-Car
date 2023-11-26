@@ -1,0 +1,318 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <mat-tab-group>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Πληροφορίες </ng-template>
+
+
+                    <div class="row">
+
+                      <div class="col-4">
+                        <mat-form-field class="col-12">
+                          <mat-label>Επώνυμο*</mat-label>
+                          <input matInput formControlName="lastname" />
+                        </mat-form-field>
+                        <div *ngIf="form.get('lastname').invalid && (form.get('lastname').dirty ||
+                form.get('lastname').touched)" class="alert">
+                          Παρακαλώ προσθέστε επώνυμο
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <mat-form-field class="col-12">
+                          <mat-label>Όνομα</mat-label>
+                          <input matInput formControlName="firstname" />
+                        </mat-form-field>
+                        <div *ngIf="form.get('firstname').invalid && (form.get('firstname').dirty ||
+                form.get('firstname').touched)" class="alert">
+                          Παρακαλώ προσθέστε όνομα
+                        </div>
+                      </div>
+
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Τηλέφωνο</mat-label>
+                        <input matInput formControlName="phone" />
+                      </mat-form-field>
+
+                    </div>
+
+
+                    <div class="row">
+                      <mat-form-field class="col-4">
+                        <mat-label>Κινητό</mat-label>
+                        <input matInput formControlName="mobile" />
+                      </mat-form-field>
+
+                      <mat-form-field class="col-4">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="email" />
+                      </mat-form-field>
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Χώρα</mat-label>
+                        <input matInput formControlName="country" />
+                      </mat-form-field>
+
+                    </div>
+
+
+
+                    <div class="row">
+                      <mat-form-field class="col-4">
+                        <mat-label>Πόλη</mat-label>
+                        <input matInput formControlName="city" />
+                      </mat-form-field>
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Διεύθυνση</mat-label>
+                        <input matInput formControlName="address" />
+                      </mat-form-field>
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Τ.Κ.</mat-label>
+                        <input matInput formControlName="zip" />
+                      </mat-form-field>
+
+                    </div>
+
+
+                    <div class="row">
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Τόπος γέννησης* </mat-label>
+                        <input matInput formControlName="birth_place" />
+                      </mat-form-field>
+
+                      <div class="col-4">
+                        <mat-form-field class="col-12">
+                          <mat-label>Ημερομηνία γέννησης*</mat-label>
+                          <input matInput #birthday [max]="currentDay" [matDatepicker]="picker1"
+                            formControlName="birthday" (keydown.enter)='$event.target.blur()'
+                            (input)="fastDate1(birthday.value)" />
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                          <span style="float:right;">( {{form.value.how_old}} Χρονών )</span>
+                        </mat-form-field>
+                        <div *ngIf="form.get('birthday').invalid && (form.get('birthday').dirty ||
+                form.get('birthday').touched)" class="alert">
+                          λάθος Ημ/νία γέννησης
+                        </div>
+                      </div>
+
+
+                      <mat-form-field class="col-4">
+                        <mat-label>ΑΦΜ</mat-label>
+                        <input matInput formControlName="afm" />
+                      </mat-form-field>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+                      <div class="col-3">
+                        <mat-form-field class="col-12">
+                          <mat-label>Αρ. Ταυτότητας ή Διαβατηρίου</mat-label>
+                          <input matInput formControlName="identification_number" />
+                        </mat-form-field>
+                        <div *ngIf="form.get('identification_number').invalid && (form.get('identification_number').dirty ||
+                form.get('identification_number').touched)" class="alert">
+                          Παρακαλώ προσθέστε αριθμό ταυτότητας
+                        </div>
+                      </div>
+
+
+                      <mat-form-field class="col-3">
+                        <mat-label>Ημ. Έκδοσης Ταυτότητας ή Διαβατηρίου</mat-label>
+                        <input matInput #IC [matDatepicker]="picker2" formControlName="identification_created"
+                          (keydown.enter)='$event.target.blur()' (input)="fastDate2(IC.value)" />
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                      </mat-form-field>
+
+                      <mat-form-field class="col-3">
+                        <mat-label>Ημ. Λήξης Ταυτότητας ή Διαβατηρίου</mat-label>
+                        <input matInput #IE [matDatepicker]="picker3" formControlName="identification_expire"
+                          (keydown.enter)='$event.target.blur()' (input)="fastDate3(IE.value)" />
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                      </mat-form-field>
+
+                      <mat-form-field class="col-3">
+                        <mat-label>Χώρα/Πόλη Έκδοσης Ταυτότητας ή Διαβατηρίου</mat-label>
+                        <input matInput formControlName="identification_country" />
+                      </mat-form-field>
+
+
+                    </div>
+
+
+
+
+                    <hr />
+
+                    <div class="col-12 p-2" style="border: solid 1px; border-radius: 30px 30px 30px 30px;">
+                      <h5 style="text-align: center;">Στοιχεία οδηγού</h5>
+
+
+                      <div class="row m-1">
+
+                        <div class="col-6">
+                          <mat-form-field class="col-12">
+                            <mat-label>Αριθμός Διπλώματος*</mat-label>
+                            <input matInput formControlName="licence_number" />
+                          </mat-form-field>
+                          <div *ngIf="form.get('licence_number').invalid && (form.get('licence_number').dirty ||
+                form.get('licence_number').touched)" class="alert">
+                            Παρακαλώ προσθέστε αριθμό Διπλώματος
+                          </div>
+                        </div>
+
+
+                        <mat-form-field class="col-6">
+                          <mat-label>Ημ. Έκδοσης Διπλώματος</mat-label>
+                          <input matInput #LC [matDatepicker]="picker4" formControlName="licence_created"
+                            (keydown.enter)='$event.target.blur()' (input)="fastDate4(LC.value)" />
+                          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                          <mat-datepicker #picker4></mat-datepicker>
+                        </mat-form-field>
+
+                      </div>
+
+
+                      <div class="row m-1">
+
+                        <mat-form-field class="col-6">
+                          <mat-label>Ημ. Λήξης Διπλώματος</mat-label>
+                          <input matInput #LE [matDatepicker]="picker5" formControlName="licence_expire"
+                            (keydown.enter)='$event.target.blur()' (input)="fastDate5(LE.value)" />
+                          <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                          <mat-datepicker #picker5></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-6">
+                          <mat-label>Χώρα/Πόλη Έκδοσης Διπλώματος*</mat-label>
+                          <input matInput formControlName="licence_country" />
+                        </mat-form-field>
+                      </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+
+                      <div class="col-4">
+                        <mat-form-field class="col-12">
+                          <mat-label>Ρόλος</mat-label>
+                          <mat-select formControlName="role">
+                            <mat-option [value]="'employee'">Employee</mat-option>
+                            <mat-option [value]="'customer'">Customer</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="form.get('role').invalid && (form.get('role').dirty ||
+                form.get('role').touched)" class="alert">
+                          Παρακαλώ επιλέξτε ρόλο
+                        </div>
+                      </div>
+
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Επιπλέον Πληροφορίες
+                        </mat-label>
+                        <input matInput formControlName="notes" />
+                      </mat-form-field>
+
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Συνδεδεμένος Χρήστης</mat-label>
+                        <a [routerLink]="['/users',contactUser?.id]">
+                          <input matInput readonly [value]="contactUser?.name" formControlName="contact_id" />
+                        </a>
+                      </mat-form-field>
+
+                    </div>
+
+
+
+                    <div class="col-10 m-1">
+                      <mat-label>Επισυναπτόμενα έγγραφα</mat-label>
+                      <app-document-upload [multiple]="true" formControlName="documents"></app-document-upload>
+                      <br>
+                    </div>
+
+
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Μισθώσεις </ng-template>
+
+                    <mat-nav-list>
+                      <div *ngFor="let r of rentals" style="margin-left:5%">
+                        <a mat-list-item routerLink="/rentals/{{r.id}}" target='_blank'> {{ r.sequence_number }} </a>
+                      </div>
+                    </mat-nav-list>
+
+
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Παραστατικά </ng-template>
+
+
+                    <mat-nav-list>
+
+                      <div *ngFor="let inv of invoices" style="margin-left:5%">
+                        <a mat-list-item routerLink="/invoices/{{inv.id}}" target='_blank'>
+                          {{ inv.sequence_number }} </a>
+                      </div>
+
+                    </mat-nav-list>
+
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Κρατήσεις </ng-template>
+
+                    <mat-nav-list>
+                      <div *ngFor="let b of bookings" style="margin-left:5%">
+                        <a mat-list-item routerLink="/bookings/{{b.id}}" target='_blank'> {{ b.sequence_number }} </a>
+                      </div>
+                    </mat-nav-list>
+
+
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Προσφορές </ng-template>
+
+                    <mat-nav-list>
+                      <div *ngFor="let q of quotes" style="margin-left:5%">
+                        <a mat-list-item routerLink="/quotes/{{q.id}}" target='_blank'> {{ q.sequence_number }} </a>
+                      </div>
+                    </mat-nav-list>
+
+
+                  </mat-tab>
+                </mat-tab-group>
+
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</app-single-form>

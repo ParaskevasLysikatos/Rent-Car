@@ -1,0 +1,10 @@
+<app-selector
+[params]="params"
+[optionTemplate]="optionTemplate">
+</app-selector>
+
+<ng-template #optionTemplate let-option>
+   {{ option?.full_name }}
+</ng-template>
+
+

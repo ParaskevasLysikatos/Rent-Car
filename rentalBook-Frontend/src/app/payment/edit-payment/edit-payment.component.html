@@ -1,0 +1,9 @@
+
+<app-payment-form (amountPayment)="amountPaymentEdit($event)"
+ (amountRefund)="amountRefundEdit($event)"
+(amountPreAuth)="amountPreAuthEdit($event)"
+(amountRefundPreAuth)="amountRefundPreAuthEdit($event)"
+ (ngSubmit)="onSubmit()" [canDelete]="true" [isFromNew]="comesFromNew" >
+ <!-- <ng-container paras>edw eimai</ng-container> -->
+</app-payment-form>
+

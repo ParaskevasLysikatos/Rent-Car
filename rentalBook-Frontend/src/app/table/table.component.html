@@ -1,0 +1,199 @@
+<div class="page-toolbar flex">
+  <a *ngIf="customUrl!='vehicle-exchanges'" mat-mini-fab color="primary" routerLink="create">
+    <mat-icon #tooltip="matTooltip" matTooltip="Δημιουργία" [matTooltipPosition]="position2.value"
+      matTooltipHideDelay="1000">add</mat-icon>
+  </a>
+  <button mat-icon-button (click)="bulk_delete()" class="ml-2" #tooltip="matTooltip" matTooltip="Διαγραφή"
+    [matTooltipPosition]="position.value" matTooltipHideDelay="1000">
+    <mat-icon color="warn">delete</mat-icon>
+  </button>
+
+   <!-- <div class="bg-card rounded-full border px-4 flex ml-7" >
+     <a mat-button color="primary" (click)="filterSearchGeneral(search.value)">
+       <mat-icon>search</mat-icon>
+     </a>
+     <input placeholder="Αναζήτηση..."
+       class="px-4 py-3 font-weight-bold border-0 w-full bg-transparent"
+       matInput #search />
+      <mat-icon matSuffix *ngIf="search.value" (click)="clearSearch()">clear</mat-icon>
+   </div> -->
+      <div class="bg-card rounded-full border px-4 ml-6" fxFlex="400px" fxFlex.lt-md="auto" fxHide.xs fxLayout="row"
+        fxLayoutAlign="start center">
+        <ic-icon (click)="filterSearchGeneral(search.value)" [icIcon]="icSearch" size="20px"></ic-icon>
+        <input #search  class="px-4 py-3 border-0 outline-none w-full bg-transparent"
+          placeholder="Αναζήτηση..." >
+           <mat-icon matSuffix *ngIf="search.value" (click)="clearSearch()">clear</mat-icon>
+      </div>
+
+    <button [matMenuTriggerFor]="excelFilterMenu" mat-icon-button class="ml-auto" #tooltip="matTooltip"
+      matTooltip="Εξαγωγή Excel" [matTooltipPosition]="position2.value" matTooltipHideDelay="1000">
+      <mat-icon>import_export</mat-icon>
+    </button>
+
+  <button [matMenuTriggerFor]="columnFilterMenu" mat-icon-button class="ml-auto" #tooltip="matTooltip"
+    matTooltip="Ενεργές στήλες" [matTooltipPosition]="position2.value" matTooltipHideDelay="1000">
+    <mat-icon [icIcon]="icColumn"></mat-icon>
+  </button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button [matMenuTriggerFor]="filtersMenu" mat-icon-button *ngIf="filters.length > 0" #tooltip="matTooltip"
+    matTooltip="Φίλτρα" [matTooltipPosition]="position3.value" matTooltipHideDelay="1000">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button (click)="resetFilters()" mat-icon-button color="warn" *ngIf="hasFilters" #tooltip="matTooltip"
+    matTooltip="καθαρισμός Φίλτρων" [matTooltipPosition]="position4.value" matTooltipHideDelay="1000">
+    <mat-icon>filter_list_off</mat-icon>
+  </button>
+</div>
+<div class="table-container">
+  <!-- <ng-content></ng-content> -->
+  <table mat-table #table [dataSource]="matTableDataSource" class="mat-elevation-z8 w-full" matSort
+    [matSortActive]="sortBy" [matSortDirection]="sortDirection" (matSortChange)="sortData($event)"
+    cdkDropListOrientation="horizontal" cdkDropList (cdkDropListDropped)="drop($event)">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef>A/A</th>
+      <td mat-cell *matCellDef="let element" (dblclick)="navigateTo(element.id)">{{ element.index }}</td>
+    </ng-container>
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+      <th [disabled]="!column.sortBy" [mat-sort-header]="column.sortBy" mat-header-cell cdkDrag *matHeaderCellDef>
+        {{ column.header }}</th>
+      <td mat-cell *matCellDef="let element" (dblclick)="navigateTo(element.id)">
+        <ng-template [ngIf]="column.cellTemplate" [ngIfElse]="cellContainer">
+          <ng-container *ngTemplateOutlet="column.cellTemplate; context: {$implicit: element}">
+          </ng-container>
+        </ng-template>
+        <ng-template #cellContainer>
+          <ng-container *ngTemplateOutlet="cell; context: {$implicit: {column, element}}">
+            <!--  -->
+          </ng-container>
+        </ng-template>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex">
+          <a class="ml-auto" mat-icon-button [routerLink]="element.id">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button mat-icon-button (click)="delete(element)">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="enabledColumns"></tr>
+    <tr mat-row @fadeInUp *matRowDef="let row; columns: enabledColumns;"></tr>
+  </table>
+</div>
+
+<mat-paginator [showFirstLastButtons]="true"  [length]="length"
+  [pageSizeOptions]="[5, 10, 20, 40, 80, 160]">
+</mat-paginator>
+
+<mat-menu #columnFilterMenu="matMenu" xPosition="before" yPosition="below">
+  <div *ngFor="let column of columns">
+    <button type="button" *ngIf="column?.cell || column?.cellTemplate" (click)="toggleColumnVisibility(column, $event)"
+      class="checkbox-item mat-menu-item">
+      <mat-checkbox (click)="$event.preventDefault()" [ngModel]="column.visible" color="accent">
+        {{ column.header }}
+      </mat-checkbox>
+    </button>
+  </div>
+</mat-menu>
+
+<mat-menu  #filtersMenu="matMenu" xPosition="before" yPosition="below">
+  <div class="row m-3"
+    (click)="$event.preventDefault();$event.stopImmediatePropagation();">
+   <a class="mt-4 mb-2 p-2" style="width:100%;" mat-button color="primary" (click)=" filterSearch()">
+     <mat-icon>search</mat-icon> Αναζήτηση
+   </a>
+    <ng-container  *ngFor="let filter of filters">
+      <ng-template [ngIf]="filter.templateRef" [ngIfElse]="filterContainer">
+        <div (click)="$event.preventDefault();$event.stopImmediatePropagation();">
+          <ng-container *ngTemplateOutlet="filter.templateRef; context: {$implicit: filter}">
+          </ng-container>
+        </div>
+      </ng-template>
+      <ng-template #filterContainer>
+        <ng-container *ngTemplateOutlet="filterTemplate; context: {$implicit: filter}">
+          <!--  -->
+        </ng-container>
+      </ng-template>
+    </ng-container>
+    <a class="mt-2 mb-4 p-2" style="width:100%;" mat-button color="primary" (click)=" filterSearch()">
+      <mat-icon>search</mat-icon> Αναζήτηση
+    </a>
+  </div>
+</mat-menu>
+
+<ng-template #cell let-col>
+  {{ col.column.cell(col.element) ?? '' }}
+</ng-template>
+
+<ng-template #filterTemplate let-filter>
+  <mat-form-field>
+    <mat-label>{{ filter.label }}</mat-label>
+    <input matInput [(ngModel)]="filter.value" />
+  </mat-form-field>
+</ng-template>
+
+<mat-menu #excelFilterMenu="matMenu" xPosition="before" yPosition="below">
+<a class="mt-4 mb-2 p-2" style="width:100%;"  mat-button color="primary" (click)="excelDownload()">
+  <mat-icon>print</mat-icon> Εξαγωγή
+</a>
+  <div *ngFor="let column of columns">
+    <button type="button" *ngIf="column?.cell || column?.cellTemplate" (click)="toggleColumnVisibilityExcel(column, $event)"
+      class="checkbox-item mat-menu-item">
+      <mat-checkbox [ngModel]="column.visible" color="primary">
+        {{ column.header }}
+      </mat-checkbox>
+    </button>
+  </div>
+  <a class="mt-4 mb-2 p-2" style="width:100%;" mat-button color="primary" (click)="excelDownload()">
+    <mat-icon>print</mat-icon> Εξαγωγή
+  </a>
+</mat-menu>
+
+
+<!-- excel table -->
+
+ <table #tableExcel style="display:none" id="excel-table" mat-table [dataSource]="matTableDataSource"
+   class="mat-elevation-z8 w-full" matSort
+   [matSortActive]="sortBy" [matSortDirection]="sortDirection" (matSortChange)="sortData($event)"
+   cdkDropListOrientation="horizontal" cdkDropList (cdkDropListDropped)="drop($event)">
+   <ng-container matColumnDef="index">
+     <th mat-header-cell *matHeaderCellDef>A/A</th>
+     <td mat-cell *matCellDef="let element">{{ element.index }}</td>
+   </ng-container>
+   <ng-container *ngFor="let column of excelColumns" [matColumnDef]="column.columnDef">
+     <th [disabled]="!column.sortBy" [mat-sort-header]="column.sortBy" mat-header-cell cdkDrag *matHeaderCellDef>
+       {{ column.header }}</th>
+     <td mat-cell *matCellDef="let element">
+       <ng-template [ngIf]="column.cellTemplate" [ngIfElse]="cellContainer">
+         <ng-container *ngTemplateOutlet="column.cellTemplate; context: {$implicit: element}">
+         </ng-container>
+       </ng-template>
+       <ng-template #cellContainer>
+         <ng-container *ngTemplateOutlet="cell; context: {$implicit: {column, element}}">
+           <!--  -->
+         </ng-container>
+       </ng-template>
+     </td>
+   </ng-container>
+   <tr mat-header-row *matHeaderRowDef="enabledColumnsExcel"></tr>
+   <tr mat-row @fadeInUp *matRowDef="let row; columns: enabledColumnsExcel;"></tr>
+ </table>

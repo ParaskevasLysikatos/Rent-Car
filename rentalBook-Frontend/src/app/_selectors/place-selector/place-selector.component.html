@@ -1,0 +1,10 @@
+<app-autocomplete-selector
+   [optionTemplate]="place"
+   [params]="params"
+   [editBtn]="activeEditBtn"
+>
+</app-autocomplete-selector>
+
+<ng-template #place let-option>
+   {{ option?.profiles?.el?.title ?? null }}
+</ng-template>

@@ -1,0 +1,9 @@
+<div style="display: flex;justify-content:around;flex-direction: column;">
+<input [attr.multiple]="multiple" class="form-control" type="file" (change)="onUpload($event)">
+<div *ngFor="let file of files; let idx = index" ><img
+      src='{{ file?.public_path }}' alt="" width="50" height="40"><a href="{{ file?.public_path }}"> -
+      {{file?.id}}</a>
+  <button mat-icon-button (click)="remove(idx)">
+    <mat-icon color="warn">delete</mat-icon>
+  </button></div>
+</div>

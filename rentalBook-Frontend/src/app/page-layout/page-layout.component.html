@@ -1,0 +1,57 @@
+<div [class.boxed]="isBoxed$ | async"
+     [class.horizontal-layout]="!(isLayoutVertical$ | async)"
+     [class.is-mobile]="!(isDesktop$ | async)"
+     [class.vertical-layout]="isLayoutVertical$ | async"
+     [class.has-fixed-footer]="(isFooterFixed$ | async) && isFooterVisible$ | async"
+     [class.has-footer]="isFooterVisible$ | async"
+     [class.scroll-disabled]="scrollDisabled$ | async"
+     [class.toolbar-fixed]="isToolbarFixed$ | async"
+     [class.sidenav-collapsed]="sidenavCollapsed$ | async"
+     [class.content-container]="containerEnabled$ | async"
+     [class.with-search]="searchOpen$ | async"
+     class="page-container">
+
+  <vex-progress-bar></vex-progress-bar>
+  <ng-container *ngTemplateOutlet="toolbarRef"></ng-container>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav
+                 [disableClose]="isDesktop$ | async"
+                 [fixedInViewport]="!(isDesktop$ | async)"
+                 [mode]="!(isDesktop$ | async) || (isLayoutVertical$ | async) ? 'over' : 'side'"
+                 [opened]="(isDesktop$ | async) && !(isLayoutVertical$ | async)"
+                 class="sidenav">
+      <ng-container *ngTemplateOutlet="sidenavRef"></ng-container>
+    </mat-sidenav>
+
+    <mat-sidenav #quickpanel
+                 [fixedInViewport]="!(isDesktop$ | async)"
+                 class="quickpanel"
+                 mode="over"
+                 position="end">
+      <ng-container *ngTemplateOutlet="quickpanelRef"></ng-container>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="sidenav-content" [id]="'myScroll'">
+      <main class="content" >
+        <vex-page-layout mode="card">
+
+            <vex-page-layout-header fxLayout="column" fxLayoutAlign="center start">
+              <div vexContainer>
+                <h2 class="title m-0"></h2>
+                <app-breadcrumbs></app-breadcrumbs>
+              </div>
+            </vex-page-layout-header>
+
+            <vex-page-layout-content vexContainer>
+              <div class="card p-0">
+                <router-outlet></router-outlet>
+              </div>
+            </vex-page-layout-content>
+
+          </vex-page-layout>
+      </main>
+
+      <ng-container *ngTemplateOutlet="footerRef"></ng-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,69 @@
+<app-single-form [formGroup]="form" [canDelete]="canDelete" (ngSubmit)="onSubmit()">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <app-multilingual-template [formGroup]="form">
+                  <ng-template info [ngIf]="true">
+                    <mat-form-field class="col-3 mr-1">
+                      <mat-label>Κωδικός</mat-label>
+                      <input matInput formControlName="code">
+                    </mat-form-field>
+                    <mat-form-field class="col-4 m-1">
+                      <mat-label>Διεύθυνση</mat-label>
+                      <input matInput formControlName="address">
+                    </mat-form-field>
+                    <mat-form-field class="col-4">
+                      <mat-label>Πόλη</mat-label>
+                      <input matInput formControlName="city">
+                    </mat-form-field>
+                    <mat-form-field class="col-4">
+                      <mat-label>Χώρα</mat-label>
+                      <input matInput formControlName="country">
+                    </mat-form-field>
+                    <mat-form-field class="col-3 m-1">
+                      <mat-label>ΤΚ</mat-label>
+                      <input matInput formControlName="zip_code">
+                    </mat-form-field>
+                    <mat-form-field class="col-4 m-1">
+                      <mat-label>Τηλέφωνο</mat-label>
+                      <input matInput formControlName="phone">
+                    </mat-form-field>
+
+                    <div>
+                      <app-location-selector [clearBtn]="true" formControlName="location_id" [addBtn]="true">
+                      </app-location-selector>
+                      <div *ngIf="form.get('location_id').invalid && (form.get('location_id').dirty ||
+                form.get('location_id').touched)" class="alert">
+                        Παρακαλώ προσθέστε περιοχή
+                      </div>
+                    </div>
+
+                    <mat-form-field class="col-4 m-1">
+                      <mat-label>Latitude</mat-label>
+                      <input matInput formControlName="latitude">
+                    </mat-form-field>
+                    <mat-form-field class="col-4 m-1">
+                      <mat-label>Longitude</mat-label>
+                      <input matInput formControlName="longitude">
+                    </mat-form-field>
+                  </ng-template>
+                </app-multilingual-template>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>

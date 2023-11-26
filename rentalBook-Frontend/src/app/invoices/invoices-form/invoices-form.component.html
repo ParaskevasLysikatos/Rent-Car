@@ -1,0 +1,215 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+                <ng-template info [ngIf]="true">
+                  <button class="col-3 m-2" *ngIf='checkUrl' type='button' mat-raised-button color="primary"
+                    (click)="ShowCheckbox()">Εκτύπωση</button>
+
+
+
+                  <div class="row m-1">
+
+                    <div class="col-4 m-3">
+                      <img src='{{brandData?.icon}}' width='150' height="50" alt=''>
+                    </div>
+
+
+                    <div class="col-3">
+                      <mat-form-field class="col-12">
+                        <mat-label>Ημερομηνία</mat-label>
+                        <input [readonly]="read" matInput [matDatepicker]="picker1" formControlName="date" />
+                        <mat-datepicker-toggle readonly matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker readonly #picker1></mat-datepicker>
+                      </mat-form-field>
+                      <div *ngIf="form.get('date').invalid && (form.get('date').dirty ||
+                          form.get('date').touched)" class="alert">
+                        Παρακαλώ προσθέστε ημερομηνία
+                      </div>
+                    </div>
+
+                    <div class="col-3">
+                      <mat-form-field class="col-12">
+                        <mat-label>Σειρά</mat-label>
+                        <input readonly matInput formControlName="sequence_number">
+                      </mat-form-field>
+                      <span *ngIf="form.get('sent_to_aade').value" class='md'>MD</span>
+                    </div>
+
+                  </div>
+
+
+
+
+                  <div *ngIf='checkUrl'>
+
+                    <div class="row">
+
+                      <app-station-selector class="col-3" #stationF formControlName='station_id'>
+                      </app-station-selector>
+
+                      <app-brand-selector class="col-3" #brand [clearBtn]="true" formControlName='brand_id'>
+                      </app-brand-selector>
+
+                      <div class="col-3">
+                        <app-customer-selector #customer [clearBtn]="true" formControlName='invoicee'>
+                        </app-customer-selector>
+                        <div *ngIf="form.get('invoicee').invalid && (form.get('invoicee').dirty ||
+                        form.get('invoicee').touched)" class="alert">
+                          Παρακαλώ προσθέστε πελάτη
+                        </div>
+                      </div>
+
+                      <div class="row col-3">
+                        <app-rental-selector #rental class="col-10" formControlName='rental_id'>
+                        </app-rental-selector>
+                        <a class="col-1 mt-6" style="cursor: pointer;" target='_blank'
+                          [routerLink]="['/rentals',rental_id]">
+                          <mat-icon>link
+                          </mat-icon>
+                        </a>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  <br>
+                  <ng-content select='[selectorsEnabled]'></ng-content>
+
+                  <div class="row" style='display:flex;justify-content:between;'>
+
+
+                    <app-payment-selector #payment [addBtn]="true" [multiple]='true' formControlName="payment_id">
+                    </app-payment-selector>
+
+                  </div>
+
+
+
+                  <br>
+
+                  <div *ngIf='checkUrl'>
+
+                    <div class="row" *ngFor="let item of Items;let i=index">
+
+                      <span class="col-1 mt-5">{{i +1}}</span>
+
+                      <mat-form-field class="col-2">
+                        <mat-label>
+                          Code</mat-label>
+                        <input [disabled]='true' matInput [value]='item?.code'>
+                      </mat-form-field>
+
+                      <mat-form-field class="col-3">
+                        <mat-label>
+                          Αιτιολογία Χρέωσης</mat-label>
+                        <input [disabled]='true' matInput [value]='item?.title'>
+                      </mat-form-field>
+
+                      <mat-form-field class="col-2">
+                        <mat-label>
+                          Τιμή (με ΦΠΑ)</mat-label>
+                        <input [disabled]='true' matInput [value]="item?.price">
+                      </mat-form-field>
+
+                      <mat-form-field class="col-2">
+                        <mat-label>
+                          Ποσότητα</mat-label>
+                        <input [disabled]='true' matInput [value]='item?.quantity'>
+                      </mat-form-field>
+
+                      <mat-form-field class="col-2">
+                        <mat-label>
+                          Σύνολο (με ΦΠΑ)
+                        </mat-label>
+                        <input [disabled]='true' matInput [value]="item?.price">
+                      </mat-form-field>
+
+                    </div>
+
+                  </div>
+                  <ng-content select='[newProduct]'>
+
+                  </ng-content>
+
+                  <br>
+
+                  <div class="row">
+
+                    <mat-form-field class="col-3">
+                      <mat-label>
+                        Υποσύνολο
+                      </mat-label>
+                      <input readonly matInput formControlName="sub_discount_total">
+                      <mat-label>
+                        €
+                      </mat-label>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-3">
+                      <mat-label>
+                        Φ.Π.Α. %
+                      </mat-label>
+                      <input readonly matInput formControlName="fpa">
+                    </mat-form-field>
+
+                    <mat-form-field class="col-3">
+                      <mat-label>
+                      Συνολικό Ποσό Φ.Π.Α €
+                      </mat-label>
+                      <input readonly matInput formControlName="final_fpa">
+                    </mat-form-field>
+
+                    <div class="col-3">
+                      <mat-form-field class="col-12">
+                        <mat-label>
+                          Σύνολο (με ΦΠΑ) €
+                        </mat-label>
+                        <input readonly matInput formControlName="final_total">
+                      </mat-form-field>
+                      <div *ngIf="form.get('final_total').invalid && (form.get('final_total').dirty ||
+                form.get('final_total').touched)" class="alert">
+                        Παρακαλώ βάλτε τουλάχιστον ένα αντικείμενο χρέωσης
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <mat-form-field class="col-12">
+                    <mat-label>
+                      Σημειώσεις:
+                    </mat-label>
+                    <textarea matInput cols=50 formControlName="notes"></textarea>
+                  </mat-form-field>
+
+                  <mat-checkbox class="col-3" formControlName='checkPrint' [checked]='true' style="margin:20px;">
+                    <mat-label>Εκτύπωση μετά την αποθήκευση</mat-label>
+                  </mat-checkbox>
+
+
+                  <button mat-raised-button type="button" color='accent' *ngIf="checkUrl" (click)="BadPrint($event)"
+                    style='margin:1%;width:25%'>Επανεκτύπωση για κακέκτυπο</button>
+
+                </ng-template>
+
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</app-single-form>

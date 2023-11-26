@@ -1,0 +1,52 @@
+<mat-form-field [class.multiple]="multiple" class="multiple selector-field">
+  <mat-label *ngIf="label">{{ label }}</mat-label>
+  <mat-select [multiple]="multiple" [formControl]="selectControl" (selectionChange)="change($event)"
+    [compareWith]="objectComparison">
+    <mat-select-trigger>
+      <ng-template [ngIf]="multiple">
+        <mat-chip-list>
+          <ng-template ngFor let-option [ngForOf]="selectControl.value" let-i="index">
+            <mat-chip (click)="edit($event, option, i)">
+              <ng-container *ngTemplateOutlet="optionTemplate || defaultTemplate; context:{ $implicit: option }">
+              </ng-container>
+              <button *ngIf="editBtn" type="button" mat-icon-button matSuffix>
+                <mat-icon>edit</mat-icon>
+              </button>
+            </mat-chip>
+          </ng-template>
+        </mat-chip-list>
+      </ng-template>
+      <ng-template [ngIf]="!multiple">
+        <ng-container *ngTemplateOutlet="optionTemplate || defaultTemplate; context:{ $implicit: selectControl.value }">
+        </ng-container>
+        <div *ngIf="editBtn" class="action-btn">
+          <button type="button" mat-icon-button matSuffix (click)="edit($event, selectControl.value)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="clearBtn" class="action-btn">
+          <button type="button" mat-icon-button matSuffix (click)="clear($event, selectControl.value)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </ng-template>
+    </mat-select-trigger>
+    <!-- place ngx-mat-select-search inside mat-option to allow opening without initial selection -->
+    <mat-option>
+      <ngx-mat-select-search [formControl]="filteringCtl" [searching]="searching" [clearSearchInput]="true"
+        placeholderLabel="Search.." noEntriesFoundLabel="Δεν υπάρχουν εγγραφές">
+        <mat-icon ngxMatSelectSearchClear>clear</mat-icon>
+      </ngx-mat-select-search>
+    </mat-option>
+    <!-- unique array with selected options -->
+    <mat-option *ngFor="let option of options" [disabled]="option?.warning || option?.warningB" [value]="option"
+      (onSelectionChange)="selectionChange($event)">
+      <ng-container  *ngTemplateOutlet="optionTemplate || defaultTemplate; context:{ $implicit: option }">
+      </ng-container>
+    </mat-option>
+  </mat-select>
+  <button class="add-btn" *ngIf="addBtn" type="button" mat-mini-fab color="primary" matSuffix (click)="add($event)">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-form-field>
+<ng-template #defaultTemplate let-option>{{ option }}</ng-template>

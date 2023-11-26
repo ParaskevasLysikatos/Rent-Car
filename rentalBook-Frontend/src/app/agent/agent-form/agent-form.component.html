@@ -1,0 +1,129 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <mat-tab-group>
+                  <mat-tab>
+                    <ng-template mat-tab-label>
+                      Πληροφορίες
+                    </ng-template>
+
+
+                    <div class="row">
+
+                      <div class="col-4">
+                        <mat-form-field class="col-12">
+                          <mat-label>Όνομα</mat-label>
+                          <input matInput formControlName="name">
+                        </mat-form-field>
+                        <div *ngIf="form.get('name').invalid && (form.get('name').dirty ||
+            form.get('name').touched)" class="alert">
+                          Παρακαλώ προσθέστε όνομα
+                        </div>
+                      </div>
+
+                      <app-company-selector class="col-4" #company formControlName="company_id" [addBtn]="true">
+                      </app-company-selector>
+
+                      <mat-form-field class="col-4">
+                        <mat-label>Προμήθεια</mat-label>
+                        <input matInput numeric decimals="2" formControlName="commission">
+                      </mat-form-field>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+                      <app-source-selector class="col-6" #source [clearBtn]="true" formControlName="booking_source_id"
+                        [addBtn]="true">
+                      </app-source-selector>
+
+
+                      <app-brand-selector class="col-6" #brand [clearBtn]="true" formControlName="brand_id"
+                        [addBtn]="true">
+                      </app-brand-selector>
+
+                    </div>
+
+
+
+                    <div class="row">
+                      <app-sub-account-selector class="col-6" #sub label='Υποπράκτορες' formControlName="sub_agents"
+                        [multiple]="true"
+                        [addBtn]="true">
+                      </app-sub-account-selector>
+
+
+                      <app-contact-selector class="col-6" label='Πωλητές' [multiple]="true" [addBtn]="true"
+                        formControlName="sub_contacts">
+                      </app-contact-selector>
+                    </div>
+
+
+
+
+                    <mat-form-field class="col-6">
+                      <mat-label>Πρόγραμμα</mat-label>
+                      <mat-select formControlName="program_id">
+                        <mat-option *ngFor="let p of programs" [value]="p.id">{{p?.profiles?.el?.title }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <br>
+                    <mat-form-field class="col-12">
+                      <mat-label>Σημειώσεις</mat-label>
+                      <input matInput formControlName="comments">
+                    </mat-form-field>
+
+
+                    <div class="col-12">
+                      <mat-label>Επισυναπτόμενα έγγραφα:</mat-label>
+                      <app-document-upload [multiple]="true" formControlName="documents"></app-document-upload>
+                    </div>
+                    <br>
+
+                    <br>
+                  </mat-tab>
+
+                  <mat-tab>
+                    <ng-template mat-tab-label>
+                      Υποπράκτορες
+                    </ng-template>
+
+                    <div *ngFor='let s of sub_agents_details | keyvalue;'>
+
+                      <mat-form-field class="col-6">
+                        <mat-label>Όνομα</mat-label>
+                        <input matInput disabled [value]="s.value">
+                      </mat-form-field>
+
+                      <mat-form-field class="col-6">
+                        <mat-label>Προμήθεια</mat-label>
+                        <input matInput disabled [value]="s.key">
+                      </mat-form-field>
+
+                    </div>
+
+                  </mat-tab>
+                </mat-tab-group>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>

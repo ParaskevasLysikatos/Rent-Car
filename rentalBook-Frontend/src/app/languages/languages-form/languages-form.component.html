@@ -1,0 +1,83 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+                  <ng-template info [ngIf]="true">
+
+                    <mat-form-field class="col">
+                      <mat-label>Γλώσσες (codes)</mat-label>
+                      <mat-select formControlName="id">
+                        <mat-option *ngFor="let lan of languagesArray  | keyvalue;let i=index;" [value]="lan.key">
+                          {{lan.value}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="col">
+                      <mat-label>Τίτλος</mat-label>
+                      <input matInput formControlName="title">
+                    </mat-form-field>
+
+                    <mat-form-field class="col">
+                      <mat-label>Διεθνής τίτλος</mat-label>
+                      <input matInput formControlName="title_international">
+                    </mat-form-field>
+
+                  </ng-template>
+
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>
+
+
+<!-- <div class='row  ml-0 mr-0'>
+  <div class='col-md-8 pl-0'>
+    <div class="row g-0">
+
+      <div class='col-12 p-1'>
+        <mat-card>
+          <mat-card-content>
+            <div class="row wrap">
+
+              <ng-template info [ngIf]="true">
+
+                <mat-form-field class="col">
+                  <mat-label>Γλώσσες (codes)</mat-label>
+                  <mat-select formControlName="id">
+                    <mat-option *ngFor="let lan of languagesArray  | keyvalue;let i=index;" [value]="lan.key">
+                      {{lan.value}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col">
+                  <mat-label>Τίτλος</mat-label>
+                  <input matInput formControlName="title">
+                </mat-form-field>
+
+                <mat-form-field class="col">
+                  <mat-label>Διεθνής τίτλος</mat-label>
+                  <input matInput formControlName="title_international">
+                </mat-form-field>
+
+              </ng-template>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div> -->

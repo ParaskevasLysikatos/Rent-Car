@@ -1,0 +1,28 @@
+<mat-form-field class="demo-chip-list">
+    <mat-label>Ετικέτες</mat-label>
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let tag of tags"
+        [removable]="true"
+        (removed)="remove(tag)">
+        {{tag.title}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        #tagInput
+        language
+        toUpperCase
+        [formControl]="tagCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="false"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, tagInput)">
+      <mat-option *ngFor="let tag of tagOptions" [value]="tag">
+        {{ tag.title }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>

@@ -1,0 +1,22 @@
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Αποτελέσματα: {{ companiesSrv.total_CompaniesSub.getValue()?.results ?? 0 }}</h6>
+</div>
+
+<app-table [dataSource]="data" [displayedColumns]="displayedColumns" [columns]="columns">
+</app-table>
+
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Συνολικά Αποτελέσματα: {{ companiesSrv.total_CompaniesSub.getValue()?.g_results ?? 0 }}</h6>
+</div>
+
+<ng-template #foreign_afm_filter let-filter>
+  <mat-form-field class="col-10">
+    <mat-label>Ξένο ΑΦΜ</mat-label>
+    <mat-select #matRef [(ngModel)]="filter.value">
+      <mat-option value="">Όλα</mat-option>
+      <mat-option value='0'>Ελληνικά</mat-option>
+      <mat-option value='1'>Ξένα</mat-option>
+    </mat-select>
+  </mat-form-field>
+   <mat-icon class="col-1" *ngIf="filter.value" (click)="clear()">clear</mat-icon>
+</ng-template>

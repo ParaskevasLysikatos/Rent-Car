@@ -1,0 +1,114 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <app-multilingual-template [formGroup]="form">
+                  <ng-template info [ngIf]="true">
+
+                    <div class="col-11 m-2">
+                      <mat-label>Εικονίδιο</mat-label>
+                      <input #myInput type="file" (change)="onChange($event)">
+                      <div *ngIf="clickedDelIcon">
+                        <img src='{{iconData}}' width="150" height="50"><a href="{{iconData}}">
+                        </a>
+                        <button type="button" *ngIf="iconData" mat-icon-button (click)="removeIcon()">
+                          <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                      </div>
+                      <br>
+                    </div>
+
+                    <div class="col-11 m-2">
+                      <mat-label>Εικόνες</mat-label>
+                      <app-image-upload [multiple]="true" formControlName="images"></app-image-upload>
+                      <br>
+                    </div>
+
+
+                    <mat-form-field class="col-3 m-1">
+                      <mat-label>Κατηγορία</mat-label>
+                      <mat-select formControlName="category_id">
+                        <mat-option *ngFor="let c of category_Max_Min" [value]="c.id">{{ c?.profiles?.el?.title }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+
+
+                    <mat-form-field class="col-3 m-1">
+                      <mat-label>Ελάχιστη κατηγορία (προαιρετικό)</mat-label>
+                      <mat-select formControlName="min_category">
+                        <mat-option *ngFor="let c of category_Max_Min" [value]="c.id">{{ c?.profiles?.el?.title }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+
+                    <mat-form-field class="col-3 m-1">
+                      <mat-label>Μέγιστη κατηγορία (προαιρετικό) </mat-label>
+                      <mat-select formControlName="max_category">
+                        <mat-option *ngFor="let c of category_Max_Min" [value]="c.id">{{ c?.profiles?.el?.title }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+
+                    <mat-form-field class="col-3 m-1">
+                      <mat-label>Διεθνής κωδικός</mat-label>
+                      <input matInput formControlName="international_code">
+                    </mat-form-field>
+
+
+
+                    <mat-form-field class="col-3 m-1">
+                      <mat-label>Ποσό απαλλαγής</mat-label>
+                      <input numeric decimals="2" matInput formControlName="excess">
+                    </mat-form-field>
+
+
+                    <div class="col-11 m-1" style="border:1px solid;border-radius: 25px;">
+                      <h5 class="m-1" style="text-align:center;font-weight:bold">Options</h5>
+                      <br>
+
+                      <ng-container *ngFor="let optionForm of optionControls; let i = index">
+                        <mat-checkbox [formControl]="optionForm" (change)="changeOptions()" class="m-2">
+                          <mat-label>{{optionsData[i]?.profiles?.el?.title}}</mat-label>
+                        </mat-checkbox>
+                      </ng-container>
+                    </div>
+                    <br>
+
+                    <div class="col-11 m-1" style="border:1px solid;border-radius: 25px;">
+                      <h5 class="m-1" style="text-align:center;font-weight:bold">Χαρακτηριστικά</h5>
+                      <br>
+
+                      <ng-container *ngFor="let characteristicForm of characteristicControls;let i=index">
+                        <mat-checkbox [formControl]="characteristicForm" (change)="changeCharacteristics()"
+                         class="m-2">
+                          <mat-label>{{characteristicsData[i]?.profiles?.el?.title}}</mat-label>
+                        </mat-checkbox>
+                      </ng-container>
+                    </div>
+
+                    <br>
+                  </ng-template>
+                </app-multilingual-template>
+
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</app-single-form>

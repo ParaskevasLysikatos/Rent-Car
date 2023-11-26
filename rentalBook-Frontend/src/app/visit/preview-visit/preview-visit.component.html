@@ -1,0 +1,219 @@
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Αποτελέσματα: {{ visitSrv.total_VisitSub.getValue()?.results ?? 0 }}</h6>
+</div>
+
+<app-table [dataSource]="data" [displayedColumns]="displayedColumns" [columns]="columns">
+</app-table>
+
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Συνολικά Αποτελέσματα: {{ visitSrv.total_VisitSub.getValue()?.g_results ?? 0  }}</h6>
+</div>
+
+
+<ng-template #ladia let-element>
+
+<mat-icon *ngIf="element.visit_details[0]?.service_details_id=='1' && element.visit_details[0]?.service_status_id=='1'"
+  style="color:green;">check_circle</mat-icon>
+
+<span *ngIf="element.visit_details[0]?.service_details_id=='1' && element.visit_details[0]?.service_status_id=='2'"
+  style="color:rgb(218, 141, 0); font-weight: bold;">A</span>
+
+<span *ngIf="element.visit_details[0]?.service_details_id=='1' && element.visit_details[0]?.service_status_id=='3'"
+  style="color:rgb(197, 197, 0); font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #filtra_ladiou let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[1]?.service_details_id=='2' && element.visit_details[1]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[1]?.service_details_id=='2' && element.visit_details[1]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0); font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[1]?.service_details_id=='2' && element.visit_details[1]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #filtra_aeros let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[2]?.service_details_id=='3' && element.visit_details[2]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[2]?.service_details_id=='3' && element.visit_details[2]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[2]?.service_details_id=='3' && element.visit_details[2]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+
+<ng-template #filtra_kampinas let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[3]?.service_details_id=='4' && element.visit_details[3]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[3]?.service_details_id=='4' && element.visit_details[3]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[3]?.service_details_id=='4' && element.visit_details[3]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #takaki_empros let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[4]?.service_details_id=='5' && element.visit_details[4]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[4]?.service_details_id=='5' && element.visit_details[4]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[4]?.service_details_id=='5' && element.visit_details[4]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #takaki_pisw let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[5]?.service_details_id=='6' && element.visit_details[5]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[5]?.service_details_id=='6' && element.visit_details[5]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[5]?.service_details_id=='6' && element.visit_details[5]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #psygeio_antipsyktiko let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[6]?.service_details_id=='7' && element.visit_details[6]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[6]?.service_details_id=='7' && element.visit_details[6]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[6]?.service_details_id=='7' && element.visit_details[6]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #mpataria let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[7]?.service_details_id=='8' && element.visit_details[7]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[7]?.service_details_id=='8' && element.visit_details[7]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[7]?.service_details_id=='8' && element.visit_details[7]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #balbolines let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[8]?.service_details_id=='9' && element.visit_details[8]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[8]?.service_details_id=='9' && element.visit_details[8]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[8]?.service_details_id=='9' && element.visit_details[8]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #mpouzi let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[9]?.service_details_id=='10' && element.visit_details[9]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[9]?.service_details_id=='10' && element.visit_details[9]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[9]?.service_details_id=='10' && element.visit_details[9]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #imantas_xronisou let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[10]?.service_details_id=='11' && element.visit_details[10]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[10]?.service_details_id=='11' && element.visit_details[10]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[10]?.service_details_id=='11' && element.visit_details[10]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #imantas_dyac let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[11]?.service_details_id=='12' && element.visit_details[11]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[11]?.service_details_id=='12' && element.visit_details[11]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[11]?.service_details_id=='12' && element.visit_details[11]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #rouleman let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[12]?.service_details_id=='13' && element.visit_details[12]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[12]?.service_details_id=='13' && element.visit_details[12]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[12]?.service_details_id=='13' && element.visit_details[12]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #diskoi let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[13]?.service_details_id=='14' && element.visit_details[13]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[13]?.service_details_id=='14' && element.visit_details[13]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[13]?.service_details_id=='14' && element.visit_details[13]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #symplektes let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[14]?.service_details_id=='15' && element.visit_details[14]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[14]?.service_details_id=='15' && element.visit_details[14]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[14]?.service_details_id=='15' && element.visit_details[14]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>
+
+<ng-template #elastika let-element>
+
+  <mat-icon
+    *ngIf="element.visit_details[15]?.service_details_id=='16' && element.visit_details[15]?.service_status_id=='1'"
+    style="color:green;">check_circle</mat-icon>
+
+  <span *ngIf="element.visit_details[15]?.service_details_id=='16' && element.visit_details[15]?.service_status_id=='2'"
+    style="color:rgb(218, 141, 0);font-weight: bold;">A</span>
+
+  <span *ngIf="element.visit_details[15]?.service_details_id=='16' && element.visit_details[15]?.service_status_id=='3'"
+    style="color:rgb(197, 197, 0);font-weight: bold;">Σ</span>
+</ng-template>

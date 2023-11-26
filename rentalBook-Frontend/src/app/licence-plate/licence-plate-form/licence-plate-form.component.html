@@ -1,0 +1,60 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+                <app-multilingual-form [formGroup]="form">
+                  <ng-template info [ngIf]="true">
+
+                    <div class="col-3 m-1">
+                      <mat-form-field class="col-12">
+                        <mat-label>Πινακίδα</mat-label>
+                        <input matInput formControlName="licence_plate">
+                      </mat-form-field>
+                      <div *ngIf="form.get('licence_plate').invalid && (form.get('licence_plate').dirty ||
+              form.get('licence_plate').touched)" class="alert">
+                        Παρακαλώ προσθέστε Πινακίδα
+                      </div>
+                    </div>
+
+
+                    <div class="col-3 m-1">
+                      <mat-form-field class="col-12">
+                        <mat-label>Ημερομηνία</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="registration_date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <div *ngIf="form.get('registration_date').invalid && (form.get('registration_date').dirty ||
+              form.get('registration_date').touched)" class="alert">
+                        Παρακαλώ προσθέστε Ημ/νία εγγραφής
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-6 m-1">
+                      <mat-label>Επισυναπτόμενα Έγγραφα:</mat-label>&nbsp;
+                      <app-document-upload [multiple]="true" formControlName="documents"></app-document-upload>
+                    </div>
+
+                  </ng-template>
+                </app-multilingual-form>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</app-single-form>

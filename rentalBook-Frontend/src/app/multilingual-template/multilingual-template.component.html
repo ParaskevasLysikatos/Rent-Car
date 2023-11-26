@@ -1,0 +1,68 @@
+<ng-container [formGroup]="formGroup">
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Πληροφορίες
+      </ng-template>
+      <div class="form-fields">
+        <span> {{currentLang}}</span>
+        <div  formGroupName="profiles">
+          <div class="row form-fields">
+            <ng-container
+              *ngTemplateOutlet="multiLingualTemplate || defaultTemplate; context:{ $implicit: currentLang }">
+            </ng-container>
+          </div>
+        </div>
+        <div *ngIf="formGroup.controls.profiles.invalid && (formGroup.controls.profiles.dirty ||
+            formGroup.controls.profiles.touched)" class="alert">
+          Παρακαλώ προσθέστε περιγραφή και τίτλο (και σε μετραφράσεις)
+        </div>
+        <ng-content select="[info]">
+
+        </ng-content>
+
+      </div>
+    </mat-tab>
+    <mat-tab *ngFor="let tab of matTabs; let i = index;">
+
+      <ng-template mat-tab-label>
+        <ng-container *ngTemplateOutlet="tab.templateLabel.templateRef">
+        </ng-container>
+      </ng-template>
+
+      <ng-template [ngIf]="tab.content" *ngTemplateOutlet="tab.content?.templateRef || tabTemplate">
+
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Μεταφράσεις
+      </ng-template>
+      <div class="form-fields" formGroupName="profiles">
+        <ng-template ngFor let-lang [ngForOf]="langs">
+          <mat-card *ngIf="currentLang != lang">
+            <span>{{lang}}</span>
+            <div class="row form-fields">
+              <ng-container *ngTemplateOutlet="multiLingualTemplate || defaultTemplate; context:{ $implicit: lang }">
+              </ng-container>
+            </div>
+            <div *ngIf="formGroup.controls.profiles.invalid && (formGroup.controls.profiles.dirty ||
+            formGroup.controls.profiles.touched)" class="alert">
+              Παρακαλώ προσθέστε περιγραφή και τίτλο (και σε μετραφράσεις
+            </div>
+          </mat-card>
+        </ng-template>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <ng-template #defaultTemplate let-lang formGroupName="profiles">
+    <ng-template ngFor let-field [ngForOf]="translatedFields | keyvalue" formGroupName="{{lang}}">
+      <mat-form-field>
+        <mat-label>{{field.value}}</mat-label>
+        <input matInput formControlName="{{field.key}}">
+      </mat-form-field>
+    </ng-template>
+  </ng-template>
+</ng-container>
+<ng-template #tabTemplate>
+</ng-template>

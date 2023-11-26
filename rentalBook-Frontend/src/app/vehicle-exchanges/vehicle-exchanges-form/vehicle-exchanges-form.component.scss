@@ -1,0 +1,31 @@
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+[readonly] {
+  opacity: 0.5;
+  pointer-events: none;
+
+}
+
+.readonly{
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.row2 {
+  display: flex;
+  width: 60%;
+}
+
+hr{
+height:1px;
+border-width:0;
+color:gray;
+background-color:gray;
+margin:1%;
+}

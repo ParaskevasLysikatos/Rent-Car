@@ -1,0 +1,45 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "whole-component": {
+      "description": "Generate a package of components in the project.",
+      "factory": "./whole-component/index#wholeComponent",
+      "schema": "./whole-component/schema.json"
+    },
+    "preview-component": {
+      "description": "Generate a preview component in the project.",
+      "factory": "./preview-component/index#previewComponent",
+      "schema": "./preview-component/schema.json"
+    },
+    "create-component": {
+      "description": "Generate a create component in the project.",
+      "factory": "./create-component/index#createComponent",
+      "schema": "./create-component/schema.json"
+    },
+    "edit-component": {
+      "description": "Generate an edit component in the project.",
+      "factory": "./edit-component/index#editComponent",
+      "schema": "./edit-component/schema.json"
+    },
+    "multi-form": {
+      "description": "Generate an multilingual form component in the project.",
+      "factory": "./multi-form-component/index#multiFormComponent",
+      "schema": "./multi-form-component/schema.json"
+    },
+    "interface": {
+      "description": "Generate an interface in the project.",
+      "factory": "./interface/index#resInterface",
+      "schema": "./interface/schema.json"
+    },
+    "service": {
+      "description": "Generate an service in the project.",
+      "factory": "./service/index#service",
+      "schema": "./service/schema.json"
+    },
+    "selector": {
+      "description": "Generate an selector in the project.",
+      "factory": "./selector/index#selectorComponent",
+      "schema": "./selector/schema.json"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    button {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+.form-container {
+    background: inherit;
+}

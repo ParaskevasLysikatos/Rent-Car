@@ -1,0 +1,189 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <mat-tab-group>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Πληροφορίες </ng-template>
+
+                    <ng-template info [ngIf]="true">
+
+
+                      <div class="row">
+
+                        <div class="col-4">
+                          <mat-form-field class="col-12">
+                            <mat-label>Επωνυμία</mat-label>
+                            <input matInput formControlName="name" />
+                          </mat-form-field>
+                          <div *ngIf="form.get('name').invalid && (form.get('name').dirty ||
+                form.get('name').touched)" class="alert">
+                            Παρακαλώ προσθέστε όνομα
+                          </div>
+                        </div>
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Διακριτικός Τίτλος </mat-label>
+                          <input matInput formControlName="title" />
+                        </mat-form-field>
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Δραστηριοτητα</mat-label>
+                          <input matInput formControlName="job" />
+                        </mat-form-field>
+
+                      </div>
+
+
+                      <div class="row">
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Δ.Ο.Υ. </mat-label>
+                          <input matInput formControlName="doy" />
+                        </mat-form-field>
+
+                        <div class="col-4">
+                          <mat-form-field class="col-12">
+                            <mat-label>Α.Φ.Μ. </mat-label>
+                            <input matInput formControlName="afm" />
+                          </mat-form-field>
+                          <div *ngIf="form.get('afm').invalid && (form.get('afm').dirty ||
+                form.get('afm').touched)" class="alert">
+                            Παρακαλώ προσθέστε Α.Φ.Μ
+                          </div>
+                        </div>
+
+
+                        <mat-checkbox class="col-4 mt-5" formControlName="foreign_afm">
+                          <mat-label>Ξένο Α.Φ.Μ.</mat-label>
+                        </mat-checkbox>
+
+                      </div>
+
+
+                      <div class="row">
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Τ.Κ. </mat-label>
+                          <input matInput formControlName="zip_code" />
+                        </mat-form-field>
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Πόλη</mat-label>
+                          <input matInput formControlName="city" />
+                        </mat-form-field>
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Χώρα</mat-label>
+                          <input matInput formControlName="country" />
+                        </mat-form-field>
+
+                      </div>
+
+
+                      <div class="row">
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Τηλέφωνο</mat-label>
+                          <input matInput formControlName="phone" />
+                        </mat-form-field>
+
+                        <mat-form-field class="col-4">
+                          <mat-label>Τηλέφωνο 2 </mat-label>
+                          <input matInput formControlName="phone_2" />
+                        </mat-form-field>
+
+                        <mat-form-field class="col-4">
+                          <mat-label>E-mail </mat-label>
+                          <input matInput formControlName="email" />
+                        </mat-form-field>
+
+                      </div>
+
+
+                      <div class="row">
+                        <mat-form-field class="col-6">
+                          <mat-label>Ιστότοπος</mat-label>
+                          <input matInput formControlName="website" />
+                        </mat-form-field>
+
+                        <mat-form-field class="col-6">
+                          <mat-label>Σχόλια: </mat-label>
+                          <input matInput formControlName="comments" />
+                        </mat-form-field>
+                      </div>
+
+                    </ng-template>
+                  </mat-tab>
+
+                  <mat-tab>
+                    <ng-template mat-tab-label>Οδηγοί</ng-template>
+                    <app-driver-selector formControlName="drivers" [multiple]="true" [addBtn]="true">
+                    </app-driver-selector>
+                  </mat-tab>
+
+                  <mat-tab>
+                    <ng-template mat-tab-label> Μισθώσεις </ng-template>
+                    <mat-nav-list>
+                      <div *ngFor="let r of rentals" style="margin-left:5%">
+                        <a mat-list-item routerLink="/rentals/{{r.id}}" target='_blank'> {{ r.sequence_number }} </a>
+                      </div>
+                    </mat-nav-list>
+                  </mat-tab>
+
+                  <mat-tab>
+                    <ng-template mat-tab-label> Παραστατικά </ng-template>
+                    <mat-nav-list>
+
+                      <div *ngFor="let inv of invoices" style="margin-left:5%">
+                        <a mat-list-item routerLink="/invoices/{{inv.id}}" target='_blank'>
+                          {{ inv.sequence_number }} </a>
+                      </div>
+                    </mat-nav-list>
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Κρατήσεις </ng-template>
+
+                    <mat-nav-list>
+                      <div *ngFor="let b of bookings" style="margin-left:5%">
+                        <a mat-list-item routerLink="/bookings/{{b.id}}" target='_blank'> {{ b.sequence_number }} </a>
+                      </div>
+                    </mat-nav-list>
+
+
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template mat-tab-label> Προσφορές </ng-template>
+
+                    <mat-nav-list>
+                      <div *ngFor="let q of quotes" style="margin-left:5%">
+                        <a mat-list-item routerLink="/quotes/{{q.id}}" target='_blank'> {{ q.sequence_number }} </a>
+                      </div>
+                    </mat-nav-list>
+
+
+                  </mat-tab>
+
+                </mat-tab-group>
+
+
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>

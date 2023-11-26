@@ -1,0 +1,18 @@
+
+  <ng-template #hex_code let-element>
+    <span class='color'
+      [style.background-color]="element.hex_code"></span>
+  </ng-template>
+
+
+
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Αποτελέσματα: {{ colorSrv.total_ColorSub.getValue()?.results ?? 0 }}</h6>
+</div>
+
+<app-table [dataSource]="data" [displayedColumns]="displayedColumns" [columns]="columns">
+</app-table>
+
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Συνολικά Αποτελέσματα: {{ colorSrv.total_ColorSub.getValue()?.g_results ?? 0 }}</h6>
+</div>

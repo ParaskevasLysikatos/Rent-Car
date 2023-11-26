@@ -1,0 +1,98 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <ng-template info [ngIf]="true">
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Ημερομηνία</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="date_start" />
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Αμάξι</mat-label>
+                    <input matInput disabled [value]="visitVehicle?.make+' '+visitVehicle?.model" />
+                  </mat-form-field>
+
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Πινακίδα</mat-label>
+                    <input matInput disabled [value]="licence_plate" />
+                  </mat-form-field>
+
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Στάθμη καυσίμου</mat-label>
+                      <input fuelRange matInput formControlName="fuel_level" />
+                      <span matSuffix>/8</span>
+                  </mat-form-field>
+
+
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Χιλιόμετρα</mat-label>
+                    <input matInput formControlName="km" />
+                  </mat-form-field>
+                  <hr />
+                  <br />
+
+                  <div class="row" style="display: flex;">
+
+
+                    <div class="column" style="width: 45%; margin-left: 5%;">
+                      <div *ngFor="let ge of GeneralDetails; let i=index" class="row" style="margin: 1%;">
+                        <mat-label style="text-shadow: 1px 1px #7700ff ;">{{ge?.title}}</mat-label>&nbsp;&nbsp;&nbsp;
+                        <mat-radio-group aria-label="Select an option">
+                          <mat-radio-button *ngFor="let s of statusArray"
+                            [checked]="getServiceDetailsById(ge.id)?.service_status_id ==s.id" [value]="s.id"
+                            style="margin: 1%;" (change)="changeStatus($event, ge.id, s.id)">
+                            <i>{{s?.title}}</i>
+                          </mat-radio-button>
+                        </mat-radio-group>
+
+                        <hr />
+                      </div>
+                    </div>
+
+
+                    <div class="column" style="width: 40%; margin-left: 5%;">
+                      <div *ngFor="let re of RentDetails ; let i=index" class=" row" style="margin: 1%;">
+                        <mat-label style="text-shadow: 1px 1px #7700ff ;">{{re?.title}}</mat-label>&nbsp;&nbsp;&nbsp;
+                        <mat-radio-group aria-label="Select an option">
+                          <mat-radio-button *ngFor="let s of statusArray"
+                            [checked]="getServiceDetailsById(re.id)?.service_status_id ==s.id" [value]="s.id"
+                            style="margin: 1%;" (change)="changeStatus($event, re.id, s.id)">
+                            <i>{{s?.title}}</i>
+                          </mat-radio-button>
+                        </mat-radio-group>
+
+                        <hr />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <mat-form-field class="col-11 m-3">
+                    <mat-label>Σημειώσεις</mat-label>
+                    <textarea row="2" matInput formControlName="comments"> </textarea>
+                  </mat-form-field>
+
+                </ng-template>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</app-single-form>

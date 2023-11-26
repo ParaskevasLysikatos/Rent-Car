@@ -1,0 +1,38 @@
+<app-brand-form (ngSubmit)="onSubmit()" [canDelete]="false" [formGroup]='formComponent.form'>
+
+<ng-container create>
+
+ <div formArrayName='forms' style="display: flex;flex-direction: row;">
+   <div *ngFor="let f of this.formComponent.forms().controls; let i=index" [formGroupName]="i"
+     style="border: 1px solid;width: 20%;padding:10px;margin:1%;">
+
+     <h3>{{ f.value.form_name }}</h3>
+     <mat-form-field>
+       <mat-label>Placeholder Text Color</mat-label>
+       <input matInput type="color" formControlName="placeholder_text_color">
+     </mat-form-field>
+     <br>
+     <mat-form-field>
+       <mat-label>Primary Background Color</mat-label>
+       <input matInput type="color" formControlName="primary_background_color">
+     </mat-form-field>
+     <br>
+     <mat-form-field>
+       <mat-label>Primary Text Color</mat-label>
+       <input matInput type="color" formControlName="primary_text_color">
+     </mat-form-field>
+     <br>
+     <mat-form-field>
+       <mat-label>Secondary Background Color</mat-label>
+       <input matInput type="color" formControlName="secondary_background_color">
+     </mat-form-field>
+     <br>
+     <mat-form-field>
+       <mat-label>Secondary Text Color</mat-label>
+       <input matInput type="color" formControlName="secondary_text_color">
+     </mat-form-field>
+   </div>
+ </div>
+</ng-container>
+
+</app-brand-form>

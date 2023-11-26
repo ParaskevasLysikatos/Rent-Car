@@ -1,0 +1,8 @@
+<app-selector
+[params]="params"
+[optionTemplate]="optionTemplate"
+></app-selector>
+
+<ng-template #optionTemplate let-option>
+  {{option?.type=='driver' ? '(Οδηγός)' : (option?.type=='company' ? '(Εταιρεία)': '(Πράκτορας)')}} {{ option?.name }}
+</ng-template>

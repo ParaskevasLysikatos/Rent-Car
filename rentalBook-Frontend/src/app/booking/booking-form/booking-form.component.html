@@ -1,0 +1,489 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete"
+  (keydown.enter)="$event.preventDefault()">
+  <div #up class='row' style="margin:1%;">
+    <button *ngIf="form.get('status').value" class='myButton' type='button' mat-raised-button color="primary"
+      (click)="ShowCheckbox()">Εκτύπωση</button>
+
+    <button *ngIf="form.get('status').value=='rental' && form.get('status').value" class='myButton' type='button'
+      mat-raised-button color="accent" [routerLink]="['/rentals',rental?.id]">Δες την αντίστοιχη μίσθωση</button>
+
+    <button *ngIf="form.get('status').value=='cancelled' && form.get('status').value" class='myButton' type='button'
+      mat-raised-button color="primary" (click)="StatusChange('pending')">Reactivate</button>
+
+    <button *ngIf="form.get('status').value=='pending' && form.get('status').value" class='myButton' type='button'
+      mat-raised-button color="warn" (click)="StatusChange('cancelled')" (click)="reasonChange()">Cancel</button>
+
+    <button *ngIf="form.get('status').value=='pending' && form.get('status').value" class='myButton' type='button'
+      mat-raised-button color="basic" (click)="createRental()">Δημ/γία Μίσθωσης</button>
+  </div>
+
+
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Γενικά
+      </ng-template>
+      <div class='row  ml-0 mr-0'>
+        <div class='col-md-8 pl-0'>
+          <div class="row g-0">
+
+
+            <div class='col-12 p-1'>
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">flag</mat-icon>
+                    &nbsp;&nbsp;
+                    <h3>Γενικές Πληροφορίες - {{ sequence_number }}</h3>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="row wrap">
+                    <mat-form-field class="col" style="margin:1%">
+                      <mat-label> Ημ. Δημιουργίας</mat-label>
+                      <input readonly matInput [matDatepicker]="picker1" formControlName="created_at">
+                      <mat-datepicker-toggle readonly matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker readonly #picker1></mat-datepicker>
+                    </mat-form-field>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <mat-label>* Δημ. Από: </mat-label>
+                    <app-user-selector class="col" readonly formControlName='user_id'></app-user-selector>
+                    <div class="col">
+                      <app-source-selector #source [addBtn]="true" formControlName="source_id"
+                        (blur)="afterModalCreate()">
+                      </app-source-selector>
+                      <div *ngIf="form.get('source_id').invalid && (form.get('source_id').dirty ||
+                        form.get('source_id').touched)" class="alert">
+                        Παρακαλώ επιλέξτε Πηγή
+                      </div>
+                    </div>
+                    <div class="col">
+                      <app-brand-selector #brand formControlName="brand_id"></app-brand-selector>
+                      <div *ngIf="form.get('brand_id').invalid && (form.get('brand_id').dirty ||
+                        form.get('brand_id').touched)" class="alert">
+                        Παρακαλώ επιλέξτε Brand
+                      </div>
+                    </div>
+                    <br>
+                    <app-tag-selector class="col" #tag formControlName="tags"></app-tag-selector>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+            <div class='col-lg-6 p-1'>
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">perm_identity</mat-icon>
+                    &nbsp;&nbsp;
+                    <h3>Πληροφορίες πελάτη </h3>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="row">
+                    <app-company-selector class="col-12" #company [addBtn]="true" [clearBtn]='true' [editBtn]="true"
+                      formControlName="company_id" (blur)="afterModalCreate()">
+                    </app-company-selector>
+                    <div class="col-12">
+                      <mat-form-field class="col-12">
+                        <mat-label>Οδηγός--</mat-label>
+                        <app-dr-cust-selector #driver [addBtn]="true" [phone]="phone.value"
+                          formControlName="customer_driver" (blur)="afterModalCreate()">
+                        </app-dr-cust-selector>
+                      </mat-form-field>
+                      <div *ngIf="driver.value?.name=='' && (form.get('customer_driver').dirty
+                        )" class="alert">
+                        Παρακαλώ επιλέξτε οδηγό
+                      </div>
+                    </div>
+                    <br>
+                    <mat-form-field class="col-12">
+                      <mat-label>Τηλέφωνο</mat-label>
+                      <input #phone matInput formControlName="phone">
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+            <div class="col-lg-6 p-1">
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">business</mat-icon>
+                    &nbsp;&nbsp;
+                    <h3>Πληροφορίες Συνεργάτη </h3>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="row">
+                    <app-agent-selector class="col-md-6" id='agent' #agent
+                      [include]='includeSourceAgent==[] ? includeSourceAgent : [0]'
+                      [addBtn]="true" [editBtn]="true" [clearBtn]="true" formControlName="agent_id"
+                      (mouseleave)="checkAgentDeselect()" (click)="checkAgentDeselect()"
+                      (blur)="afterModalCreate()">
+                    </app-agent-selector>
+                    <app-sub-account-selector class="col-md-6" #sub [ngClass]="agentBool ? '': 'readonly'"
+                      [editBtn]="true" [clearBtn]="true" [addBtn]="true" [include]="includeAgentSub"
+                      formControlName="sub_account" (click)="checkAgentDeselect()">
+                    </app-sub-account-selector>
+                    <mat-form-field class="col-12">
+                      <mat-label>Πρόγραμμα</mat-label>
+                      <mat-select formControlName="program_id">
+                        <mat-option *ngFor="let program of programs" [value]="program?.id">
+                          {{ program?.profiles?.el?.title }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-md-6">
+                      <mat-label>Conf #</mat-label>
+                      <input matInput formControlName="confirmation_number" (keydown.enter)='$event.target.blur()'>
+                    </mat-form-field>
+                    <mat-form-field class="col-md-6">
+                      <mat-label>Voucher</mat-label>
+                      <input matInput formControlName="agent_voucher" (keydown.enter)='$event.target.blur()'>
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+            <div class="col-lg-6 p-1">
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">assignment_return</mat-icon>
+                    &nbsp;&nbsp;
+                    <h3>Πληροφορίες Παράδοσης</h3>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="row">
+                    <app-datetimepicker class="col-12" #checkout_datetime formControlName="checkout_datetime"
+                      (changeDate)="timeChangeOut()" (keydown.enter)='$event.target.blur()'>
+                    </app-datetimepicker>
+                    <app-station-selector class="col-sm-6" #stationO formControlName="checkout_station_id">
+                    </app-station-selector>
+                    <mat-form-field class="col-sm-6">
+                      <mat-label>Τοποθεσία</mat-label>
+                      <app-place-selector #placeO [activeEditBtn]="false" [include]='includeOutPlaces'
+                        formControlName="checkout_place"></app-place-selector>
+                    </mat-form-field>
+                    <mat-form-field class="col-sm-6">
+                      <mat-label>Πτήση</mat-label>
+                      <input matInput formControlName="flight" (keydown.enter)='$event.target.blur()' />
+                    </mat-form-field>
+                    <mat-form-field class="col-sm-6">
+                      <mat-label>Σχόλια</mat-label>
+                      <textarea (keydown.enter)="onEnter($event)" matInput
+                        formControlName="checkout_comments"></textarea>
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+            <div class="col-lg-6 p-1">
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">input</mat-icon>
+                    &nbsp;&nbsp;
+                    <h3 #checkIn>Πληροφορίες Παραλαβής</h3>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="row">
+                    <app-datetimepicker class="col-12" #checkin_datetime formControlName="checkin_datetime"
+                      (changeDate)="timeChangeIn()" (keydown.enter)='$event.target.blur()'
+                      [min]="checkout_datetime?.value ? checkout_datetime?.value : null">
+                    </app-datetimepicker>
+                    <app-station-selector class="col-sm-6" #stationI formControlName="checkin_station_id">
+                    </app-station-selector>
+                    <mat-form-field class="col-sm-6">
+                      <mat-label>Τοποθεσία</mat-label>
+                      <app-place-selector #placeI [activeEditBtn]="false" [include]='includeInPlaces'
+                        formControlName="checkin_place">
+                      </app-place-selector>
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                      <mat-label>Σχόλια</mat-label>
+                      <textarea (keydown.enter)="onEnter($event)" matInput
+                        formControlName="checkin_comments"></textarea>
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+            <div class="col-lg-6 p-1">
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">directions_car</mat-icon>
+                    &nbsp;&nbsp;
+                    <h3>Πληροφορίες οχήματος</h3>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <app-group-selector [clearBtn]="true" #group formControlName="type_id"
+                        (mouseleave)="checkGroupDeselect()" (click)="checkGroupDeselect()">
+                      </app-group-selector>
+                      <div *ngIf="form.get('type_id').invalid && (form.get('type_id').dirty ||
+              form.get('type_id').touched)" class="alert">
+                        Παρακαλώ επιλέξτε group
+                      </div>
+                    </div>
+                    <mat-form-field class="col-sm-6">
+                      <mat-label>Μοντέλο Αυτοκινήτου</mat-label>
+                      <input matInput readonly [value]=" vehicleData ? vehicleData?.make+' '+ vehicleData?.model : ''" />
+                    </mat-form-field>
+                    <app-vehicle-selector class="col-sm-6" [clearBtn]="true" #vehicle [vehicle_status]="['active']"
+                      [status2]="['available']" [type_id]="includeGroupPlates ?? 0" formControlName="vehicle_id"
+                      [from]="[checkout_datetime.value]" [to]="[checkin_datetime.value]"
+                      [rental_id]="[form.get('id').value]" (click)="checkGroupDeselect()">
+                    </app-vehicle-selector>
+                    <br>
+                    <mat-form-field class="col-sm-4">
+                      <mat-label>Excess</mat-label>
+                      <input matInput numeric formControlName="excess" />
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+            <div class="col-lg-6 p-1">
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">hourglass_empty</mat-icon>
+                    &nbsp;&nbsp;
+                    <h3>Πληροφορίες διάρκειας</h3>
+                  </div>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class='row'>
+                        <mat-form-field>
+                          <mat-label>Διάρκεια</mat-label>
+                          <input matInput numeric formControlName='duration' #durationCtl
+                            (change)="changeDuration(durationCtl.value)" (keydown.enter)='$event.target.blur()' />
+                          <span matSuffix>ημέρες</span>
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <mat-checkbox *ngIf='plusDayInitial' [checked]="form.get('extra_day').value"
+                          formControlName="extra_day" (change)='calcPlusdayCheckbox()'>
+                          <mat-label>+ ημέρα</mat-label>
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                     <mat-form-field class="col-6">
+                       <mat-label>Βασικό Μίσθωμα</mat-label>
+                       <input #basicEdit matInput numeric decimals="2"
+                         (keydown.enter)='$event.target.blur()'
+                         (blur)='basicRentalEdit()'
+                         [value]="items?.at(findItem(24))?.get('total_cost')?.value" />
+                       <span matSuffix>€</span>
+                     </mat-form-field>
+                    <!-- <mat-form-field class="col-6">
+                      <mat-label>Βασικό Μίσθωμα</mat-label>
+                      <input #basicEdit matInput numeric decimals="2" (change)='basicRentalEdit()'
+                        (keydown.enter)='$event.target.blur()' [formControl]="$any(items?.at(0)?.get('total_cost'))" />
+                      <span matSuffix>€</span>
+                    </mat-form-field> -->
+                    <mat-form-field class="col-6">
+                      <mat-label>Κόστος παράτασης:</mat-label>
+                      <input matInput numeric decimals="2" formControlName='extension_rate'
+                        (keydown.enter)='$event.target.blur()' (change)='ExtensionRate()' />
+                      <span matSuffix>€</span>
+                    </mat-form-field>
+                    <mat-checkbox class="col-6" (change)="mayExtend()" [checked]="form.get('may_extend').value"
+                      formControlName="may_extend">
+                      <mat-label>Ισως επεκταθεί</mat-label>
+                    </mat-checkbox>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+            <div class="col-12 p-1">
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">speaker_notes</mat-icon>
+                    &nbsp;&nbsp;
+                    <div class="flex">
+                      <h3 class="mb-2">Σημειώσεις</h3>
+                    </div>
+                  </div>
+                </mat-card-title>
+                <mat-form-field class="col-12">
+                  <textarea (keydown.enter)="onEnter($event)" rows="3" matInput formControlName="comments"></textarea>
+                </mat-form-field>
+              </mat-card>
+            </div>
+
+
+            <div class="col-12 p-1">
+              <mat-card>
+                <mat-card-title>
+                  <div class="flex">
+                    <mat-icon color="primary">attach_file</mat-icon>
+                    &nbsp;&nbsp;
+                    <div class="flex">
+                      <h3>Επισυναπτόμενα έγγραφα</h3>
+                    </div>
+                  </div>
+                </mat-card-title>
+                <span *ngIf="form.controls.convert.value" class="alert">Τα έγγραφα θα συγχρονιστούν και ενεργοποιηθούν μετά από αποθήκευση</span>
+                <app-document-upload [ngClass]="form.controls.convert.value ? 'readonly': ''" [multiple]="true" formControlName='documents'></app-document-upload>
+              </mat-card>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-md-4 pr-0">
+          <app-summary-charges
+          [groups]="group_Ref.selector.data"
+          [durationInput]="form?.get('duration')?.value ?? duration"
+           [summary_payers]="payers"
+            [paid]="printBookingSrv.total_paidSubject.getValue()"
+           (rateIncreased)="rateHandler($event)"
+            (finalIncreased)="finalIncreasedHandler($event)"
+            formGroupName="summary_charges">
+            </app-summary-charges>
+        </div>
+      </div>
+
+
+      <div id='scrolling' class='bottom'>
+        <div class='row' style="margin:1%;">
+          <button type='button' mat-raised-button color="warn" class='myButtonScroll' (click)="scrollTop(up)">Scroll
+            top</button>
+
+          <button *ngIf="form.get('status').value" class='myButtonScroll' type='button' mat-raised-button
+            color="primary"
+            (click)="ShowCheckbox()">Εκτύπωση</button>
+
+          <button *ngIf="form.get('status').value=='rental' && form.get('status').value" class='myButtonScroll'
+            type='button'
+            mat-raised-button color="accent" [routerLink]="['/rentals',rental.id]">Δες την αντίστοιχη μίσθωση</button>
+
+          <button *ngIf="form.get('status').value=='cancelled' && form.get('status').value" class='myButtonScroll'
+            type='button' mat-raised-button color="primary" (click)="StatusChange('pending')">Reactivate</button>
+
+          <button *ngIf="form.get('status').value=='pending' && form.get('status').value" class='myButtonScroll'
+            type='button'
+            mat-raised-button color="warn" (click)="StatusChange('cancelled')" (click)="reasonChange()">Cancel</button>
+
+          <button *ngIf="form.get('status').value=='pending' && form.get('status').value" class='myButtonScroll'
+            type='button'
+            mat-raised-button color="basic" (click)="createRental()">Δημ/γία Μίσθωσης</button>
+
+          <app-single-form class="mt-5 mb-5" [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+          </app-single-form>
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Εισπράξεις
+      </ng-template>
+
+      <table #deptsTable class="mat-table">
+        <tr class="mat-header-row">
+          <th class="mat-header-cell">Χρέωση σε:</th>
+          <th class="mat-header-cell">Πληρωτέο</th>
+          <th class="mat-header-cell">Υπόλοιπο</th>
+          <th class="mat-header-cell">Χρέος-Συνολικό</th>
+        </tr>
+        <ng-container *ngFor="let payer of payers | keyvalue">
+          <tr *ngIf="payer.value.name" class="mat-row">
+            <td class="mat-cell">{{payer.value.text}}{{payer.value.name}}</td>
+            <td class="mat-cell">{{payer.value.paid | number: '1.2-2'}}</td>
+            <!-- < 0 ? 0 : payer.value.debt - payer.value.paid -->
+            <td class="mat-cell">
+              {{payer.value.debt - payer.value.paid - form.get('summary_charges.discount_fee').value | number: '1.2-2' }}
+            </td>
+            <!-- <td class="mat-cell" *ngIf="payer.value.debt - payer.value.paid<0">
+               {{-1*(payer.value.debt - payer.value.paid) }}
+             </td> -->
+            <td class="mat-cell">{{payer.value.debt - form.get('summary_charges.discount_fee').value | number: '1.2-2'}}
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+
+      <h4>Εισπράξεις</h4>
+
+      <button type="button" mat-flat-button color="primary" (click)="addPayment('payment')">Προσθήκη Είσπραξης</button>
+      &nbsp;&nbsp;
+      <button type="button" mat-flat-button color="primary" (click)="addPayment('refund')">Επιστροφή Χρημάτων</button>
+      &nbsp;&nbsp;
+      <button type="button" mat-flat-button color="primary" (click)="addPayment('pre-auth')">Προσθήκη Εγγύησης</button>
+      &nbsp;&nbsp;
+      <button type="button" mat-flat-button color="primary" (click)="addPayment('refund-pre-auth')">Επιστροφή Χρημάτων
+        Εγγύησης</button>
+
+      <table mat-table #paymentsTable [dataSource]="form.get('payments')?.value" class="mat-elevation-z8">
+        <ng-container matColumnDef="received_by">
+          <th mat-header-cell *matHeaderCellDef>Είσπραξη από</th>
+          <td mat-cell *matCellDef="let element">
+            {{payers[element.payer?.type].text}}{{payers[element.payer?.type].name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Ποσό</th>
+          <td mat-cell *matCellDef="let element">{{element.amount | number: '1.2-2'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Ημερομηνία</th>
+          <td mat-cell *matCellDef="let element">{{element.payment_datetime  | date: 'dd/MM/yyyy  HH:mm'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>Τύπος Πληρωμής</th>
+          <td mat-cell *matCellDef="let element">{{element.payment_type | paymentTranslate}}</td>
+        </ng-container>
+        <ng-container matColumnDef="method">
+          <th mat-header-cell *matHeaderCellDef>Τρόπος Πληρωμής</th>
+          <td mat-cell *matCellDef="let element">{{element.payment_method}}</td>
+        </ng-container>
+        <ng-container matColumnDef="sequence_number">
+          <th mat-header-cell *matHeaderCellDef>Σειρά</th>
+          <td mat-cell *matCellDef="let element">{{element.sequence_number}}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <a mat-button (click)="editPayment(element)">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <button type="button" mat-button (click)="deletePayment(element)">
+              <mat-icon color="warn">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row
+          *matHeaderRowDef="['received_by', 'amount','date','type','method','sequence_number', 'actions']"></tr>
+        <tr mat-row
+          *matRowDef="let row; columns: ['received_by', 'amount','date','type','method','sequence_number', 'actions'];">
+        </tr>
+      </table>
+
+    </mat-tab>
+
+  </mat-tab-group>
+</app-single-form>

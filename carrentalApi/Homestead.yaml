@@ -1,0 +1,32 @@
+ip: 192.168.10.10
+memory: 1024
+cpus: 1
+provider: virtualbox
+version: 8.2.1
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: ./
+        to: /home/vagrant/code
+
+sites:
+    -
+        map: carrental.test
+        to: /home/vagrant/code/public
+        php: "7.4"
+    -
+        map: phpmyadmin.test
+        to: /home/vagrant/code/public/phpmyadmin
+databases:
+    - carrental
+features:
+    -
+        mariadb: false
+    -
+        ohmyzsh: false
+    -
+        webdriver: false
+name: carrental
+hostname: carrental

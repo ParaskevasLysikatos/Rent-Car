@@ -1,0 +1,154 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+                <ng-template info [ngIf]="true">
+
+
+                  <div class="row">
+
+                    <div class="col-4">
+                      <mat-form-field class="col-12">
+                        <mat-label>Επώνυμο</mat-label>
+                        <input matInput formControlName="lastname" />
+                      </mat-form-field>
+                      <div *ngIf="form.get('lastname').invalid && (form.get('lastname').dirty ||
+                form.get('lastname').touched)" class="alert">
+                        Παρακαλώ προσθέστε Επώνυμο
+                      </div>
+                    </div>
+
+
+                    <div class="col-4">
+                      <mat-form-field class="col-12">
+                        <mat-label>Όνομα</mat-label>
+                        <input matInput formControlName="firstname" />
+                      </mat-form-field>
+                      <div *ngIf="form.get('firstname').invalid && (form.get('firstname').dirty ||
+                form.get('firstname').touched)" class="alert">
+                        Παρακαλώ προσθέστε όνομα
+                      </div>
+                    </div>
+
+
+                    <div class="col-4">
+                      <mat-form-field class="col-12">
+                        <mat-label>Τηλέφωνο</mat-label>
+                        <input matInput formControlName="phone" />
+                      </mat-form-field>
+                      <div *ngIf="form.get('phone').invalid && (form.get('phone').dirty ||
+                form.get('phone').touched)" class="alert">
+                        Παρακαλώ προσθέστε Τηλέφωνο
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+                  <div class="row">
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Κινητό</mat-label>
+                      <input matInput formControlName="mobile" />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>E-mail</mat-label>
+                      <input matInput formControlName="email" />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Χώρα</mat-label>
+                      <input matInput formControlName="country" />
+                    </mat-form-field>
+
+                  </div>
+
+
+                  <div class="row">
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Πόλη</mat-label>
+                      <input matInput formControlName="city" />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Διεύθυνση</mat-label>
+                      <input matInput formControlName="address" />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Τ.Κ.</mat-label>
+                      <input matInput formControlName="zip" />
+                    </mat-form-field>
+
+                  </div>
+
+
+                  <div class="row">
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Ημερομηνία γέννησης</mat-label>
+                      <input matInput [matDatepicker]="picker1" formControlName="birthday" />
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>ΑΦΜ</mat-label>
+                      <input matInput formControlName="afm" />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Αρ. Ταυτότητας ή Διαβατηρίου</mat-label>
+                      <input matInput formControlName="identification_number" />
+                    </mat-form-field>
+
+                  </div>
+
+
+                  <div class="row">
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Ημ. Έκδοσης</mat-label>
+                      <input matInput [matDatepicker]="picker2" formControlName="identification_created" />
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Ημ. Λήξης</mat-label>
+                      <input matInput [matDatepicker]="picker3" formControlName="identification_expire" />
+                      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                      <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-4">
+                      <mat-label>Χώρα/Πόλη Έκδοσης</mat-label>
+                      <input matInput formControlName="identification_country" />
+                    </mat-form-field>
+
+                  </div>
+
+
+
+
+                </ng-template>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</app-single-form>

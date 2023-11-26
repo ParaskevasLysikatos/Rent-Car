@@ -1,0 +1,24 @@
+<app-toolbar class="page-toolbar">
+<!--  *ngIf="customUrl!='vehicle-exchanges'"-->
+    <button [disabled]='uploadingDoc || uploadingImg || formSrv.waitSaveToComplete.getValue()' class="toolbar-save" mat-button
+      #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" type="button" (click)="save(SingleFormComponent.SAVE)"
+    (mouseenter)="mouseEnter(menuTrigger)" (mouseleave)="mouseLeave(menuTrigger)">
+        <mat-icon>save</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [hasBackdrop]="false">
+        <div class="menu toolbar-save" (mouseenter)="mouseEnter(menuTrigger)" (mouseleave)="mouseLeave(menuTrigger)">
+            <button mat-button type="button" (click)="save(SingleFormComponent.SAVE)">Αποθήκευση</button>
+            <button *ngIf="saveAndNew" mat-button type="button" (click)="save(SingleFormComponent.SAVE_AND_NEW)">Αποθήκευση και Νέο</button>
+            <button mat-button type="button" (click)="save(SingleFormComponent.SAVE_AND_CLOSE)">Αποθήκευση και Κλείσιμο</button>
+        </div>
+    </mat-menu>
+    <button class="toolbar-delete" mat-button color="warn" type="button" *ngIf="canDelete" (click)="delete()"><mat-icon>delete</mat-icon></button>
+</app-toolbar>
+
+<app-my-loading></app-my-loading>
+
+<form class="form-container" [formGroup]="formGroup">
+    <ng-content>
+
+    </ng-content>
+</form>

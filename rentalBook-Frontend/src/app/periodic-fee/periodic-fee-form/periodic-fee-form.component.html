@@ -1,0 +1,107 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <ng-template info [ngIf]="true">
+
+
+                  <div class="col-3 m-1">
+                    <mat-form-field class="col-12">
+                      <mat-label>Τύπος</mat-label>
+                      <mat-select formControlName="periodic_fee_type_id">
+                        <mat-option *ngFor="let p of periodicTypes" [value]="p.id">{{ p?.title}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <div *ngIf="form.get('periodic_fee_type_id').invalid && (form.get('periodic_fee_type_id').dirty ||
+              form.get('periodic_fee_type_id').touched)" class="alert">
+                      Παρακαλώ προσθέστε Τύπο περιοδικού τέλους
+                    </div>
+                  </div>
+
+
+                  <div class="col-3 m-1">
+                    <mat-form-field class="col-12">
+                      <mat-label>Τίτλος</mat-label>
+                      <input matInput formControlName="title">
+                    </mat-form-field>
+                    <div *ngIf="form.get('title').invalid && (form.get('title').dirty ||
+              form.get('title').touched)" class="alert">
+                      Παρακαλώ προσθέστε Τίτλο περιοδικού τέλους
+                    </div>
+                  </div>
+
+
+
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Περιγραφή</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                  </mat-form-field>
+
+
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Κόστος</mat-label>
+                    <input numeric decimals="2" matInput formControlName="fee">
+                  </mat-form-field>
+
+                  <div class="col-3 m-1">
+                    <mat-form-field class="col-12">
+                      <mat-label>Ημερομηνία έναρξης</mat-label>
+                      <input matInput [matDatepicker]="picker1" formControlName="date_start">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                    <div *ngIf="form.get('date_start').invalid && (form.get('date_start').dirty ||
+              form.get('date_start').touched)" class="alert">
+                      Παρακαλώ προσθέστε Ημ/νία έναρξης περιοδικού τέλους
+                    </div>
+                  </div>
+
+
+                  <div class="col-3 m-1">
+                    <mat-form-field class="col-12">
+                      <mat-label>Ημερομηνία λήξης</mat-label>
+                      <input matInput [matDatepicker]="picker2" formControlName="date_expiration">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                    <div *ngIf="form.get('date_expiration').invalid && (form.get('date_expiration').dirty ||
+              form.get('date_expiration').touched)" class="alert">
+                      Παρακαλώ προσθέστε Ημ/νία λήξης περιοδικού τέλους
+                    </div>
+                  </div>
+
+
+                  <mat-form-field class="col-3 m-1">
+                    <mat-label>Ημ/νία πληρωμής</mat-label>
+                    <input matInput [matDatepicker]="picker3" formControlName="date_payed">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
+
+                  <div class="col-6 m-1">
+                    <mat-label>Επισυναπτόμενα Έγγραφα:</mat-label>&nbsp;
+                    <app-document-upload [multiple]="true" formControlName="documents"></app-document-upload>
+                  </div>
+
+
+                </ng-template>
+
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>

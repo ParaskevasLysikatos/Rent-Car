@@ -1,0 +1,44 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+
+                <app-multilingual-template [formGroup]="form">
+                  <ng-template info [ngIf]="true">
+
+                    <div class="col-4 ">
+                      <mat-label>Εικονίδιο</mat-label>
+                      <input #myInput type="file" (change)="onChange($event)">
+                      <div class="row m-1" *ngIf="clickedDelIcon">
+                        <div class="col-4">
+                          <img src='{{iconData}}' width="150" height="50"><a href="{{iconData}}">
+                          </a>
+                        </div>
+                        <button type="button" *ngIf="iconData" mat-icon-button (click)="removeIcon()">
+                          <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                      </div>
+                      <br>
+                    </div>
+
+                  </ng-template>
+                </app-multilingual-template>
+
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>

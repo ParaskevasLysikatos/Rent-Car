@@ -1,0 +1,53 @@
+<app-single-form [formGroup]="form" (ngSubmit)="onSubmit()" [canDelete]="canDelete">
+
+  <div class='row  ml-0 mr-0'>
+    <div class='col-md-12 pl-0'>
+      <div class="row g-0">
+
+        <div class='col-12 p-1'>
+          <mat-card>
+            <mat-card-content>
+              <div class="row wrap">
+
+                <app-multilingual-template [formGroup]="form" [translatedFields]="translatedFields">
+                  <ng-template info [ngIf]="true">
+
+
+                    <div class="row">
+                      <div class="col-6">
+                        <mat-form-field class="col-12">
+                          <mat-label>Latitude</mat-label>
+                          <input matInput formControlName="latitude">
+                        </mat-form-field>
+                        <div *ngIf="form.get('latitude').invalid && (form.get('latitude').dirty ||
+                form.get('latitude').touched)" class="alert">
+                          Παρακαλώ προσθέστε latitude
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <mat-form-field class="col-12">
+                          <mat-label>Longitude</mat-label>
+                          <input matInput formControlName="longitude">
+                        </mat-form-field>
+                        <div *ngIf="form.get('longitude').invalid && (form.get('longitude').dirty ||
+                form.get('longitude').touched)" class="alert">
+                          Παρακαλώ προσθέστε longitude
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </ng-template>
+                </app-multilingual-template>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-single-form>

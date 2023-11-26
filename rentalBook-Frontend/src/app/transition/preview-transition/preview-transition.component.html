@@ -1,0 +1,32 @@
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Αποτελέσματα: {{ transitionSrv.total_TransitionSub.getValue()?.results ?? 0 }}</h6>
+</div>
+
+<app-table [dataSource]="data" [displayedColumns]="displayedColumns" [columns]="columns">
+</app-table>
+
+<div style="display:flex;justify-content:space-between;margin:1%;">
+  <h6>Συνολικά Αποτελέσματα: {{ transitionSrv.total_TransitionSub.getValue()?.g_results ?? 0 }}</h6>
+</div>
+
+<ng-template #type_filter let-filter>
+<mat-form-field class="col-10">
+    <mat-label>*Κατάσταση Οχήματος</mat-label>
+    <mat-select #matRef [(ngModel)]="filter.value">
+      <mat-option *ngFor="let t of transitionTypeData" [value]="t.id">{{ t?.title }}</mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-icon class="col-1" *ngIf="filter.value" (click)="clear()">clear</mat-icon>
+</ng-template>
+
+
+ <ng-template #driver_filter let-filter>
+   <app-driver-selector class="col-12" [clearBtn]="true" [label]="filter.label" [(ngModel)]="filter.value">
+   </app-driver-selector>
+ </ng-template>
+
+
+<ng-template #licence_plates_filter let-filter>
+  <app-vehicle-selector class="col-12" [clearBtn]="true" [label]="filter.label" [(ngModel)]="filter.value">
+  </app-vehicle-selector>
+</ng-template>

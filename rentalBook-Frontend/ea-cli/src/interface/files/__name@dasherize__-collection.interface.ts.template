@@ -1,0 +1,5 @@
+import { I<%= classify(name) %> } from './<%= dasherize(name) %>.interface';
+
+export interface I<%= classify(name) %>Collection extends I<%= classify(name) %> {
+    
+}

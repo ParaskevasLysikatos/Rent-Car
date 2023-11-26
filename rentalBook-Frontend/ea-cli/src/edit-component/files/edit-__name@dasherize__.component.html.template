@@ -1,0 +1,2 @@
+<app-<%= dasherize(name) %>-form (ngSubmit)="onSubmit()" [canDelete]="true">
+</app-<%= dasherize(name) %>-form>

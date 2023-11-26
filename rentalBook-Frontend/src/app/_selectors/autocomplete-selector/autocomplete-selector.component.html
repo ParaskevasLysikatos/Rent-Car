@@ -1,0 +1,18 @@
+<div class="app-autocomplete-selector-container">
+    <input language toUpperCase matInput #search [matAutocomplete]="auto" [formControl]="searchCtrl">
+    <button *ngIf="idCtrl.value && editBtn" (click)="edit(idCtrl.value)" type="button" mat-button><mat-icon>edit</mat-icon></button>
+  <button *ngIf="searchCtrl.value && addBtn && !idCtrl.value" (click)="add(searchCtrl.value)" type="button" mat-button>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<input type="hidden" [formControl]="idCtrl" >
+<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectionChange($event)">
+    <mat-option *ngFor="let option of options" [value]="option" matTooltip="τηλ: {{option?.contact?.phone}}"
+      [matTooltipPosition]="position.value">
+        <ng-container
+            *ngTemplateOutlet="optionTemplate; context:{ $implicit: option }"
+        >
+        </ng-container>
+        <span></span>
+    </mat-option>
+</mat-autocomplete>

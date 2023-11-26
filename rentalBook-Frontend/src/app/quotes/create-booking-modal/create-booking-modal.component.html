@@ -1,0 +1,12 @@
+<h3>Η φόρμα έχει τροποποιηθεί δίχως να αποθηκευτεί</h3>
+<hr>
+<h3>Επιλέξτε τον τρόπο που θα συνεχίσετε:</h3>
+<hr>
+<br>
+<div style="display:flex;margin-left:30%;">
+  <button mat-raised-button (click)="onClose()" color="warn">Ακύρωση</button>
+  &nbsp;&nbsp;&nbsp;
+  <button mat-raised-button (click)="noSave()" color="accent">Συνέχεια δίχως Αποθήκευση</button>
+  &nbsp;&nbsp;&nbsp;
+  <button mat-raised-button (click)="withSave()" color="primary">Συνέχεια με Αποθήκευση</button>
+</div>

@@ -1,0 +1,16 @@
+import { Component, ViewChild } from '@angular/core';
+import { CreateFormComponent } from 'src/app/create-form/create-form.component';
+import { ApiService } from 'src/app/_services/api-service.service';
+import { <%= classify(name) %>FormComponent } from '../<%= dasherize(name) %>-form/<%= dasherize(name) %>-form.component';
+import { I<%= classify(name) %> } from '../<%= dasherize(name) %>.interface';
+import { <%= classify(name) %>Service } from '../<%= dasherize(name) %>.service';
+
+@Component({
+  selector: 'app-create-<%= dasherize(name) %>',
+  templateUrl: './create-<%= dasherize(name) %>.component.html',
+  styleUrls: ['./create-<%= dasherize(name) %>.component.scss'],
+  providers: [{provide: ApiService, useClass: <%= classify(name) %>Service}]
+})
+export class Create<%= classify(name) %>Component extends CreateFormComponent<I<%= classify(name) %>> {
+  @ViewChild(<%= classify(name) %>FormComponent, {static: true}) formComponent!: <%= classify(name) %>FormComponent;
+}

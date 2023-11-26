@@ -1,0 +1,22 @@
+mat-sidenav-container {
+    height: 100%;
+}
+
+mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-sidenav {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+}
+
+.logout {
+    margin-left: auto;
+}
+
+.content {
+    position: relative;
+    flex: 1 1 auto;
+}

@@ -1,0 +1,13 @@
+<app-selector
+[params]="params"
+[optionTemplate]="optionTemplate">
+</app-selector>
+
+<ng-template #optionTemplate let-option>
+   {{ option?.full_name }}
+</ng-template>
+
+
+<!-- <ng-template #optionTemplate2 let-option>
+  {{'τηλ:'+option?.contact?.phone ?? ''}}
+</ng-template> -->

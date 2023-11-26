@@ -1,0 +1,18 @@
+.mat-dialog-content {
+    position: relative;
+    ::ng-deep {
+        .page-toolbar {
+            display: none;
+        }
+        .toolbar-save {
+            display: none;
+        }
+        .toolbar-delete {
+            display: none;
+        }
+    }
+}
+
+.dialog {
+    
+}

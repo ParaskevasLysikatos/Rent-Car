@@ -1,0 +1,47 @@
+<div class="w-full h-full bg-pattern" fxLayout="column" fxLayoutAlign="center center">
+    <div @fadeInUp class="card overflow-hidden w-full max-w-xs">
+      <div class="p-6 pb-0" fxLayout="column" fxLayoutAlign="center center">
+        <div class="fill-current text-center">
+          <img class="w-16" [src]="imageUrl$ | async">
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <h2 class="title m-0">Καλωσήρθες</h2>
+        <h4 class="body-2 text-secondary m-0">Συνδέσου με τα στοιχεία σου</h4>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-6" fxLayout="column" fxLayoutGap="16px">
+        <div fxFlex="auto" fxLayout="column">
+          <mat-form-field fxFlex="grow">
+            <mat-label>Username</mat-label>
+            <input formControlName="username" matInput required>
+            <mat-error *ngIf="loginForm.get('username').hasError('required')">Το πεδίο username είναι απαραίτητο</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="grow">
+            <mat-label>Κωδικός</mat-label>
+            <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput required>
+            <button (click)="hide = !hide" mat-icon-button matSuffix matTooltip="Toggle Visibility" type="button">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">Το πεδίο κωδικός είναι απαραίτητο</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-checkbox formControlName="rememberMe" class="caption" color="accent">Να με θυμάσαι</mat-checkbox>
+          <a [routerLink]="['/forgot-password']" (click)="showSend()" class="caption">Ξέχασες τον κωδικό σου;</a>
+        </div>
+
+
+         <button *ngIf="show" color="accent" (click)="sendPassword()" mat-raised-button type="button">
+           Ανάκτηση κωδικού με email
+         </button>
+
+
+        <button color="primary" mat-raised-button type="submit">
+          Σύνδεση
+        </button>
+      </form>
+    </div>
+  </div>

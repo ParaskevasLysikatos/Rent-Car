@@ -1,0 +1,30 @@
+<h3>Απαραίτητα Δεδομένα</h3>
+<!-- done or clear icon -->
+<div>
+<ul>
+<li *ngIf="brand" type="circle">Μία Πηγή <mat-icon mat-icon>done</mat-icon>
+</li>
+<li *ngIf="!brand" type="circle">Μία Πηγή <mat-icon mat-icon>clear</mat-icon>
+</li>
+
+<li *ngIf="location" type="circle">Μία Περιοχή <mat-icon mat-icon>done</mat-icon>
+</li>
+<li *ngIf="!location" type="circle">Μία Περιοχή <mat-icon mat-icon>clear</mat-icon>
+</li>
+
+<li *ngIf="station" type="circle">Ένας Σταθμός <mat-icon mat-icon>done</mat-icon>
+</li>
+<li *ngIf="!station" type="circle">Ένας Σταθμός <mat-icon mat-icon>clear</mat-icon>
+</li>
+
+<li *ngIf="place" type="circle">Μία Τοποθεσία <mat-icon mat-icon>done</mat-icon>
+</li>
+<li *ngIf="!place" type="circle">Μία Τοποθεσία <mat-icon mat-icon>clear</mat-icon>
+</li>
+
+<li *ngIf="mycompany" type="circle">Η Εταιρεία μου <mat-icon mat-icon>done</mat-icon>
+</li>
+<li *ngIf="!mycompany" type="circle">Η Εταιρεία μου <mat-icon mat-icon>clear</mat-icon>
+</li>
+</ul>
+</div>

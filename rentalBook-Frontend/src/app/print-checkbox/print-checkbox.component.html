@@ -1,0 +1,18 @@
+<form [formGroup]="myForm" novalidate>
+  <div formArrayName="checkboxes" class="row">
+    <div *ngFor="let check of checkboxes().controls; let i=index" class="column">
+       <mat-checkbox (click)="checkCheckbox(i)" [formGroupName]="i"
+         class="example-margin">{{check.value?.sequence_number}}</mat-checkbox>
+          <br>
+    </div>
+
+  </div>
+
+<div style="margin-top:25%;">
+ <button mat-raised-button mat-dialog-close color="warn">Close</button>
+ &nbsp;&nbsp;
+ <button mat-raised-button mat-dialog-close [disabled]="!selected" (click)="ShowAllSelectedPrints()"
+   color="accent">Εκτύπωση</button>
+</div>
+
+</form>

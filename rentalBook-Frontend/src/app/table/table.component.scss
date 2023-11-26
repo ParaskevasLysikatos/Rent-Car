@@ -1,0 +1,18 @@
+.table-container {
+    overflow: auto;
+    max-height: calc(85vh - var(--page-layout-header-height) - var(--page-layout-toolbar-height));
+}
+
+.search{
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color:white;
+    border-width: 1px;
+    border-radius: 9999px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    width: 200px;
+    height: 50px;
+
+}

@@ -1,0 +1,24 @@
+.btn-custom {
+    position: relative;
+    color: white;
+    transition: background-color 300ms ease;
+    background-color: var(--color);
+    &:after {
+        content: '';
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 0;
+        border-radius: 60px;
+        transition: opacity 300ms ease;
+    }
+    &:hover, &:active, &:focus {
+        color: white;
+        &:after {
+            opacity: 0.3;
+        }
+    }
+}

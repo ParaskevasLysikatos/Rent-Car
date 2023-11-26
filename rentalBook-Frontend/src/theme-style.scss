@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+    // Get the color config from the theme.
+    $color-config: mat.get-color-config($theme);
+
+    // Get the primary color palette from the color-config.
+    $primary-palette: map.get($color-config, 'primary');
+    $text-palette: map.get($color-config, 'text');
+    $warn-palette: map.get($color-config, 'warn');
+    $accent-palette: map.get($color-config, 'accent');
+
+    &.body {
+        --primary: #{mat.get-color-from-palette($primary-palette, 500)};
+        --primary-light: #{mat.get-color-from-palette($primary-palette, 100)};
+        --primary-bold: #{mat.get-color-from-palette($primary-palette, 800)};
+        --warn: #{mat.get-color-from-palette($warn-palette, 500)};
+        --warn-light: #{mat.get-color-from-palette($warn-palette, 100)};
+        --warn-bold: #{mat.get-color-from-palette($warn-palette, 800)};
+        --sidebar-active-bg: var(--primary-light);
+        --sidebar-active-color: var(--primary-bold);
+    }
+}
