@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Exceptions\InvalidStatusException;
 use App\Filters\VehicleFilter;

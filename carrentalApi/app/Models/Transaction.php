@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Http\Controllers\InvoicesController;
 use Carbon\Carbon;

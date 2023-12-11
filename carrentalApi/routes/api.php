@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', 'AuthController@login');
+Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', 'AuthController@logout');
 Route::get('user', 'AuthController@user');
 Route::post('resetPassword', 'AuthController@resetPassword');

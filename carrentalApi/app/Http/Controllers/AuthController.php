@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\UserResource;
 use Mail;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -41,13 +40,13 @@ class AuthController extends Controller
       // var_dump($field);
         // $credentials = request([$field, 'password']);
         //var_dump($credentials);
-        if (!$token = auth('api')->attempt($credentials)) {
+        if (!$token = Auth::attempt($credentials)) {
             //has failed one time (username is like email)
             $field = 'username';
             $credentials = request([$field, 'password']);
             $credentials = array_merge($credentials, ['username' => strtoupper(request('email'))]);
 
-            if (!$token = auth('api')->attempt($credentials)){
+            if (!$token = Auth::attempt($credentials)){
                 return response()->json(['error' => 'Unauthorized'], 401);
             }else{
                 return $this->respondWithToken($token); // pass as a username

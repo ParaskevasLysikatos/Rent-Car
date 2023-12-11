@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\VisitFilter;
 use App\Traits\ModelAffectsVehicleTrait;

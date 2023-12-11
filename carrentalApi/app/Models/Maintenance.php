@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\ModelAffectsVehicleStatusInterface;
 use App\Traits\ModelAffectsVehicleStatusTrait;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\RentalFilter;
 use App\Traits\ModelAffectsVehicleStatusInterface;
