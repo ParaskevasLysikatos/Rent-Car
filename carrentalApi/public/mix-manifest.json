@@ -1,8 +1,0 @@
-{
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/node_modules/tinymce/jquery.tinymce.js": "/node_modules/tinymce/jquery.tinymce.js?id=a154c15cd3488c8f93b3",
-    "/node_modules/tinymce/jquery.tinymce.min.js": "/node_modules/tinymce/jquery.tinymce.min.js?id=a154c15cd3488c8f93b3",
-    "/node_modules/tinymce/tinymce.js": "/node_modules/tinymce/tinymce.js?id=bf1f1628cf0ab50c69f9",
-    "/node_modules/tinymce/tinymce.min.js": "/node_modules/tinymce/tinymce.min.js?id=1285cecc57d2afb13aa1"
-}

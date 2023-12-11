@@ -1,8 +1,0 @@
-<app-selector
-[params]="params"
-[optionTemplate]="station"
-></app-selector>
-
-<ng-template #station let-option>
-   {{ option?.profiles['el'].title }}
-</ng-template>

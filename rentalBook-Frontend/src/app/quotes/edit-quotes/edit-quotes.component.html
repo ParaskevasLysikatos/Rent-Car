@@ -1,9 +1,0 @@
-
-<!-- <h2>Επεξεργασία Προσφοράς -
-<span *ngIf="object?.sequence_number">{{ object?.sequence_number}} </span>
-<span *ngIf="object?.modification_number>0">{{'('+formComponent.modification_number+')'}}</span>
-<span>-{{statusHeader}}-</span>
-<span *ngIf="object?.cancel_reason_id">{{'('+formComponent.cancel_reason+')'}}</span>
- </h2> -->
-<app-quotes-form (selectedStatus)="statusHeaderHandler($event)" (ngSubmit)="onSubmit()" [canDelete]="true">
-</app-quotes-form>
