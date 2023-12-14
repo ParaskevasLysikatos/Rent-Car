@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\PlaceFilter;
 use App\Traits\ModelHasSlugTrait;
 use Illuminate\Database\Eloquent\Model;
-use App\Station;
-use App\PlaceProfile;
+use App\Models\Station;
+use App\Models\PlaceProfile;
 use App\Traits\ModelHasProfileTitleAttributeTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;

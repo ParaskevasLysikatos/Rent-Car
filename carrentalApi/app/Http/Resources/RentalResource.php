@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Transition;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RentalResource extends JsonResource

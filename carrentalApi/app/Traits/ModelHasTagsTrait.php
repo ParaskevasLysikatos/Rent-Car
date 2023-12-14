@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use App\Tag;
-use App\TagLink;
+use App\Models\Tag;
+use App\Models\TagLink;
 use Request;
 
 trait ModelHasTagsTrait {

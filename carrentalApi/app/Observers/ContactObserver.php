@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Contact;
+use App\Models\Contact;
 
 class ContactObserver
 {

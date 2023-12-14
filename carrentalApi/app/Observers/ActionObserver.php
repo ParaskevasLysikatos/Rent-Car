@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\ActionLog;
+use App\Models\ActionLog;
 use Auth;
 
 class ActionObserver

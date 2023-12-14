@@ -3,7 +3,7 @@
 
 namespace App\Traits;
 
-use App\Document;
+use App\Models\Document;
 use App\Http\Controllers\PDFController;
 use File;
 use Lang;

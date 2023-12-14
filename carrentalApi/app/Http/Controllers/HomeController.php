@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Brand;
+use App\Models\Brand;
 use App\Company;
-use App\CompanyPreferences;
-use App\Location;
-use App\Place;
-use App\Station;
+use App\Models\CompanyPreferences;
+use App\Models\Location;
+use App\Models\Place;
+use App\Models\Station;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

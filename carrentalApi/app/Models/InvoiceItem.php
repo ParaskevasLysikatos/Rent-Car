@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Invoice;
+use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id

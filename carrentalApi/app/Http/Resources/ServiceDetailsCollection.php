@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use App\LicencePlate;
-use App\Vehicle;
+use App\Models\LicencePlate;
+use App\Models\Vehicle;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ServiceDetailsCollection extends ResourceCollection

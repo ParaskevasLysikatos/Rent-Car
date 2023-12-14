@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Type;
+use App\Models\Type;
 
 trait ModelBelongsToTypeTrait
 {

@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Booking;
+use App\Models\Booking;
 
 trait ModelBelongsToBookingTrait
 {

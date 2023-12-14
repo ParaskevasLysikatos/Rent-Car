@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -15,31 +17,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', 'AuthController@logout');
-Route::get('user', 'AuthController@user');
-Route::post('resetPassword', 'AuthController@resetPassword');
+Route::post('logout', [AuthController::class, 'logout']);
+Route::post('resetPassword',  [AuthController::class, 'resetPassword']);
 
 
-// Route::group([
-//     'prefix' => '{locale}',
-//     'where' => ['locale' => '[a-zA-Z]{2}'],
-//     'middleware' => ['setlocale']], function () {
-
-    Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
-    });
-
-
+});
 
     Route::group([
-        'middleware' => ['auth:api']
+        'middleware' => ['auth:sanctum']
     ], function () {
     Route::get('refresh', 'AuthController@refresh');
 
     //Home and combined
     Route::prefix('home')->group(function () {
-        Route::get('/', 'HomeController@index_api');
-        Route::get('/combined', 'ExportController@combinedCollections');
+        Route::get('/', [HomeController::class, 'index_api']);
+        Route::get('/combined', [ExportController::class, 'combinedCollections']);
         Route::get('/combinedVehicles', 'ExportController@combinedCollectionsVehicles');
         Route::get('/combinedBookingSources', 'ExportController@combinedCollectionsBookingSources');
         Route::get('/combinedUsers', 'ExportController@combinedCollectionsUsers');

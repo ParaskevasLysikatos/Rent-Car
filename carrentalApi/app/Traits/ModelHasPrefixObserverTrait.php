@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Station;
+use App\Models\Station;
 
 trait ModelHasPrefixObserverTrait {
     public abstract function getPrefix();

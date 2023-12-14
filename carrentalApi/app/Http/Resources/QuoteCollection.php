@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Quote;
+use App\Models\Quote;
 class QuoteCollection extends ResourceCollection
 {
     /**

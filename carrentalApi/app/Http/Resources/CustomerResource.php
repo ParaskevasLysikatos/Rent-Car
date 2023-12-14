@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Agent;
-use App\Company;
-use App\Driver;
+use App\Models\Agent;
+use App\Models\Company;
+use App\Models\Driver;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CustomerResource extends JsonResource

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\PeriodicFee;
+use App\Models\PeriodicFee;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB ;
 class VehicleResource extends JsonResource

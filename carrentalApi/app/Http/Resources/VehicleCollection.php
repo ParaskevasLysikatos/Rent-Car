@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Vehicle;
+use App\Models\Vehicle;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class VehicleCollection extends ResourceCollection

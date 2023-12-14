@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\TagFilter;
 use Illuminate\Database\Eloquent\Builder;

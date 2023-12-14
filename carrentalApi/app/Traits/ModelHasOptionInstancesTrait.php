@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\OptionInstance;
+use App\Models\OptionInstance;
 
 trait ModelHasOptionInstancesTrait {
     /**

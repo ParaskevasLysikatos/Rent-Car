@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Language;
+use App\Models\Language;
 
 trait ModelBelongsToLanguageTrait
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Document;
+use App\Models\Document;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DocumentCollection extends ResourceCollection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Mail;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +20,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','resetPassword']]);
+        $this->middleware('auth:sanctum', ['except' => ['login','resetPassword']]);
     }
 
     /**
@@ -32,10 +33,12 @@ class AuthController extends Controller
         if (filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
             $field = 'email';
             $credentials = request([$field, 'password']);
+            $user=User::where( $field,request('email'))->first();
         } else {
             $field = 'username';
             $credentials = request([$field, 'password']);
             $credentials = array_merge($credentials, ['username' => strtoupper(request('email'))]);
+            $user=User::where( $field,request('username'))->first();
         }
       // var_dump($field);
         // $credentials = request([$field, 'password']);
@@ -49,24 +52,15 @@ class AuthController extends Controller
             if (!$token = Auth::attempt($credentials)){
                 return response()->json(['error' => 'Unauthorized'], 401);
             }else{
-                return $this->respondWithToken($token); // pass as a username
+                return $this->respondWithToken($token,$user); // pass as a username
             }
 
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);// pass as email
+        return $this->respondWithToken($token,$user);// pass as email
     }
 
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function user()
-    {
-        return response()->json(auth('api')->user());
-    }
 
     /**
      * Log the user out (Invalidate the token).
@@ -75,7 +69,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth('api')->logout();
+       Auth::user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -96,12 +90,11 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken($token,$user=null)
     {
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 360 //now ttl last 72 hours(*360),in config now is 12 hours
+            'access_token' => $user->createToken('api token of '.$user->name)->plainTextToken,
+            'token_type' => 'bearer'
         ]);
     }
 

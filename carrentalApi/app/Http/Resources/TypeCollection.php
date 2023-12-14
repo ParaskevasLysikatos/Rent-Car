@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Type;
+use App\Models\Type;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use DB;
 

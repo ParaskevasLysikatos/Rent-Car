@@ -4,8 +4,8 @@ namespace App\Observers;
 
 use App\Exceptions\VehicleHasActiveStatusesException;
 use App\Exceptions\VehicleNotFoundException;
-use App\Vehicle;
-use App\VehicleStatus;
+use App\Models\Vehicle;
+use App\Models\VehicleStatus;
 
 class VehicleStatusObserver
 {

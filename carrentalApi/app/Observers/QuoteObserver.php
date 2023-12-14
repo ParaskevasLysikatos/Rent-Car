@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Quote;
+use App\Models\Quote;
 use Carbon\Carbon;
 use App;
 

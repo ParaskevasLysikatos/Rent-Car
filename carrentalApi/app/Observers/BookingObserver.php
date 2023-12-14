@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
-use App\Booking;
+use App\Models\Booking;
 use App\Exceptions\InvalidDatesException;
-use App\Vehicle;
-use App\VehicleStatus;
+use App\Models\Vehicle;
+use App\Models\VehicleStatus;
 use Carbon\Carbon;
 
 class BookingObserver

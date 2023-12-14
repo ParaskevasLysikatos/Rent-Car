@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Pricelist;
+use App\Models\Pricelist;
 
 trait ModelBelongsToPricelistTrait
 {

@@ -3,7 +3,7 @@
 
 namespace App\Traits;
 
-use App\VehicleStatus;
+use App\Models\VehicleStatus;
 use Carbon\Carbon;
 
 interface ModelAffectsVehicleStatusInterface

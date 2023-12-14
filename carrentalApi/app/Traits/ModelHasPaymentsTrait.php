@@ -2,13 +2,13 @@
 
 namespace App\Traits;
 
-use App\Agent;
-use App\Booking;
-use App\Company;
-use App\Driver;
+use App\Models\Agent;
+use App\Models\Booking;
+use App\Models\Company;
+use App\Models\Driver;
 use App\Http\Controllers\PaymentsController;
-use App\Payment;
-use App\Rental;
+use App\Models\Payment;
+use App\Models\Rental;
 use DB;
 use Illuminate\Support\Collection;
 use Request;

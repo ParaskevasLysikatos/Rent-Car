@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 use Carbon\Carbon;
-use App\Type;
+use App\Models\Type;
 
 class TypeFilter extends AbstractFilter
 {

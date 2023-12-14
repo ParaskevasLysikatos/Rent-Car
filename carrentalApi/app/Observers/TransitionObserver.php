@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Transition;
-use App\VehicleStatus;
+use App\Models\Transition;
+use App\Models\VehicleStatus;
 
 class TransitionObserver
 {

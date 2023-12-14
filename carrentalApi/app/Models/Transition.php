@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Filters\TransitionFilter;
+use App\Models\TransitionType;
 use App\Traits\ModelAffectsVehicleStatusInterface;
 use App\Traits\ModelAffectsVehicleStatusTrait;
 use App\Traits\ModelAffectsVehicleTrait;
@@ -12,7 +13,6 @@ use App\Traits\ModelHasDocumentsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use App\TransitionType;
 use Illuminate\Database\Eloquent\Builder;
 
 /**

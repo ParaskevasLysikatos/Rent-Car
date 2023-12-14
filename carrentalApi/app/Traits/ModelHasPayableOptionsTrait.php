@@ -2,16 +2,16 @@
 
 namespace App\Traits;
 
-use App\Agent;
-use App\Booking;
-use App\BookingItem;
-use App\Company;
-use App\Driver;
+use App\Models\Agent;
+use App\Models\Booking;
+use App\Models\BookingItem;
+use App\Models\Company;
+use App\Models\Driver;
 use App\Exceptions\TransactionAmountLessThanInvoicedException;
-use App\Option;
-use App\Quote;
-use App\Rental;
-use App\Transaction;
+use App\Models\Option;
+use App\Models\Quote;
+use App\Models\Rental;
+use App\Models\Transaction;
 use Request;
 
 trait ModelHasPayableOptionsTrait

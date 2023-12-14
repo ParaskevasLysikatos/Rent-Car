@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\TypeFilter;
 use App\Traits\ModelHasImagesTrait;
@@ -116,7 +116,7 @@ class Type extends Model
         )->orderBy('ordering')
         ->orderBy('id');
     }
-    
+
 
     public function addCharacteristic(Characteristic $characteristic, int $ordering = 100): self
     {

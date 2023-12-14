@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use App\Image;
-use App\ImageLink;
+use App\Models\Image;
+use App\Models\ImageLink;
 use Request;
 use Str;
 

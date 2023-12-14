@@ -4,8 +4,8 @@
 namespace App\Traits;
 
 use App\Exceptions\InvalidStatusException;
-use App\Vehicle;
-use App\VehicleStatus;
+use App\Models\Vehicle;
+use App\Models\VehicleStatus;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 

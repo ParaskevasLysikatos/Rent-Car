@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use App\Document;
-use App\DocumentLink;
+use App\Models\Document;
+use App\Models\DocumentLink;
 use Illuminate\Http\UploadedFile;
 use Request;
 use Str;

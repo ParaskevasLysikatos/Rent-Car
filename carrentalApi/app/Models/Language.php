@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\LanguageFilter;
 use Illuminate\Database\Eloquent\Builder;

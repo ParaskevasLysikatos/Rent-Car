@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use App\Option;
-use App\OptionLink;
+use App\Models\Option;
+use App\Models\OptionLink;
 use Request;
 
 trait ModelHasOptionsTrait {

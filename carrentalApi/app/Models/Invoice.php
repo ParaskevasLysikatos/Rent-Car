@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Filters\InvoiceFilter;
 use App\Http\Controllers\MydataController;
 use Illuminate\Database\Eloquent\Model;
-use App\InvoiceItem;
+use App\Models\InvoiceItem;
 use App\Traits\ModelHasPaymentsTrait;
 use App\Traits\ModelHasPrefixObserverTrait;
 use App\Traits\ModelHasPrintingsTrait;

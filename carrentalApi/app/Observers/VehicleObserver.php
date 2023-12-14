@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Vehicle;
+use App\Models\Vehicle;
 use App\Rental;
 use App\Booking;
 use App\Transition;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\DocumentTypeProfile;
+use App\Models\DocumentTypeProfile;
 use App\Filters\DocumentTypeFilter;
 use Illuminate\Database\Eloquent\Builder;
 

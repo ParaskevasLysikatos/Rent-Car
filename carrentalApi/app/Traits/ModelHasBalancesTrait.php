@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
-use App\Balance;
-use App\Payment;
-use App\Transaction;
+use App\Models\Balance;
+use App\Models\Payment;
+use App\Models\Transaction;
 use DB;
 
 trait ModelHasBalancesTrait {

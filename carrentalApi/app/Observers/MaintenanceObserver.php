@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Maintenance;
-use App\VehicleStatus;
+use App\Models\Maintenance;
+use App\Models\VehicleStatus;
 
 class MaintenanceObserver
 {

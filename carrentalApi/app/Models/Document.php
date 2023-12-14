@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\DocumentFilter;
 use App\Traits\ModelHasCommentsTrait;

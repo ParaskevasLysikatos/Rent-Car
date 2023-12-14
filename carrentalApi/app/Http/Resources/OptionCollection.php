@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 
-use app\Option;
+use App\Models\Option;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class OptionCollection extends ResourceCollection

@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use App\Driver;
-use App\DriverLink;
+use App\Models\Driver;
+use App\Models\DriverLink;
 use Request;
 
 trait ModelHasDriversTrait {

@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\ActionLog;
+use App\Models\ActionLog;
 use App\Observers\ActionObserver;
 
 

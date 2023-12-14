@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Vehicle;
+use App\Models\Vehicle;
 
 trait ModelBelongsToVehicleTrait
 {

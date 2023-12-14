@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Filters\BrandFilter;
 use App\Traits\ModelHasProfileTitleAttributeTrait;

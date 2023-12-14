@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\LicencePlate;
-use App\ServiceVisit;
-use App\Vehicle;
+use App\Models\LicencePlate;
+use App\Models\ServiceVisit;
+use App\Models\Vehicle;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ServiceVisitCollection extends ResourceCollection
