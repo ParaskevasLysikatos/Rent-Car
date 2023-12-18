@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Payment;
+use App\Models\Payment;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\DB;
 

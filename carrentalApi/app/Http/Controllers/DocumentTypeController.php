@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\DocumentTypeProfile;
+use App\Models\DocumentTypeProfile;
 use App\Http\Resources\DocumentTypesCollection;
-use App\Language;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use Cookie;
-use App\DocumentType;
+use App\Models\DocumentType;
 use App\Http\Resources\DocumentTypesResource;
 
 class DocumentTypeController extends Controller

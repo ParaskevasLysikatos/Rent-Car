@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\TypesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -34,33 +38,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::prefix('home')->group(function () {
         Route::get('/', [HomeController::class, 'index_api']);
         Route::get('/combined', [ExportController::class, 'combinedCollections']);
-        Route::get('/combinedVehicles', 'ExportController@combinedCollectionsVehicles');
-        Route::get('/combinedBookingSources', 'ExportController@combinedCollectionsBookingSources');
-        Route::get('/combinedUsers', 'ExportController@combinedCollectionsUsers');
-        Route::get('/combinedTypes', 'ExportController@combinedCollectionsTypes');
-        Route::get('/combinedAgents', 'ExportController@combinedCollectionsAgents');
-        Route::get('/combinedInvoices', 'ExportController@combinedCollectionsInvoices');
-        Route::get('/combinedPayments', 'ExportController@combinedCollectionsPayments');
-        Route::get('/combinedQuotes', 'ExportController@combinedCollectionsQuotes');
-        Route::get('/combinedBookings', 'ExportController@combinedCollectionsBookings');
-        Route::get('/combinedRentals', 'ExportController@combinedCollectionsRentals');
+        Route::get('/combinedVehicles',  [ExportController::class, 'combinedCollectionsVehicles']);
+        Route::get('/combinedBookingSources',  [ExportController::class, 'combinedCollectionsBookingSources']);
+        Route::get('/combinedUsers', [ExportController::class, 'combinedCollectionsUsers']);
+        Route::get('/combinedTypes', [ExportController::class, 'combinedCollectionsTypes']);
+        Route::get('/combinedAgents', [ExportController::class, 'combinedCollectionsAgents']);
+        Route::get('/combinedInvoices', [ExportController::class, 'combinedCollectionsInvoices']);
+        Route::get('/combinedPayments', [ExportController::class, 'combinedCollectionsPayments']);
+        Route::get('/combinedQuotes', [ExportController::class, 'combinedCollectionsQuotes']);
+        Route::get('/combinedBookings', [ExportController::class, 'combinedCollectionsBookings']);
+        Route::get('/combinedRentals', [ExportController::class, 'combinedCollectionsRentals']);
     });
 
         //TYPES
         Route::prefix('types')->group(function () {
-        Route::post('/upload', 'TypesController@upload');
-        Route::delete('/uploadRemove/{id}', 'TypesController@uploadRemove');
-            Route::get('/', 'TypesController@preview_api');
-            Route::get('/{id}', 'TypesController@edit');
-            Route::patch('/{id}', 'TypesController@update');
-            Route::post('/create', 'TypesController@createApi');
-            Route::delete('/{id}', 'TypesController@delete_api');
+        Route::post('/upload', [TypesController::class, 'upload']);
+        Route::delete('/uploadRemove/{id}', [TypesController::class, 'uploadRemove']);
+            Route::get('/',  [TypesController::class, 'preview_api']);
+            Route::get('/{id}', [TypesController::class, 'edit']);
+            Route::patch('/{id}',  [TypesController::class, 'update']);
+            Route::post('/create',  [TypesController::class, 'createApi']);
+            Route::delete('/{id}',  [TypesController::class, 'delete_api']);
         });
 
         //IMAGES
     Route::prefix('image')->group(function () {
-        Route::delete('/', 'ImageController@removeImageLink');
-        Route::post('/upload', 'ImageController@uploadImage');
+        Route::delete('/', [ImageController::class, 'removeImageLink']);
+        Route::post('/upload', [ImageController::class, 'uploadImage']);
     });
 
 
@@ -69,22 +73,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             Route::group([
                 'middleware' => 'permissions'
             ], function () {
-                Route::get('/', 'DocumentTypeController@preview_api');
-                Route::post('/create', 'DocumentTypeController@update_store_api');
-                Route::get('/{id}', 'DocumentTypeController@edit');
-                Route::patch('/{id}', 'DocumentTypeController@update_store_api');
-                Route::delete('/{id}', 'DocumentTypeController@delete_api');
+                Route::get('/', [DocumentTypeController::class, 'preview_api']);
+                Route::post('/create',  [DocumentTypeController::class, 'update_store_api']);
+                Route::get('/{id}', [DocumentTypeController::class, 'edit']);
+                Route::patch('/{id}',  [DocumentTypeController::class, 'update_store_api']);
+                Route::delete('/{id}',  [DocumentTypeController::class, 'delete_api']);
             });
         });
 
         //DOCUMENTS
         Route::prefix('document')->group(function () {
-        Route::post('/upload', 'DocumentController@update_store_api');
-            Route::get('/', 'DocumentController@preview_api');
-            Route::post('/create', 'DocumentController@update_store_api');
-            Route::get('/{id}', 'DocumentController@edit');
-            Route::patch('/{id}', 'DocumentController@update_store_api');
-            Route::delete('/{id}', 'DocumentController@delete_api');
+        Route::post('/upload',  [DocumentController::class, 'update_store_api']);
+            Route::get('/', [DocumentController::class, 'preview_api']);
+            Route::post('/create',  [DocumentController::class, 'update_store_api']);
+            Route::get('/{id}',  [DocumentController::class, 'edit']);
+            Route::patch('/{id}',  [DocumentController::class, 'update_store_api']);
+                Route::delete('/{id}',  [DocumentController::class, 'delete_api']);
         });
 
 

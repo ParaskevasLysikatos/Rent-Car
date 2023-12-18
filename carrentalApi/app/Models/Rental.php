@@ -27,7 +27,6 @@ use Illuminate\Notifications\Notifiable;
 
 
 
-
 /**
  * @property int         $id
  * @property string      $created_at

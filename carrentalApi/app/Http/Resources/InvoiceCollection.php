@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Invoice;
+use App\Models\Invoice;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class InvoiceCollection extends ResourceCollection

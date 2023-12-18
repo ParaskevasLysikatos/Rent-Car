@@ -2,34 +2,18 @@
 
 namespace App\Http\Resources;
 
-use App\BookingSource;
-use App\Brand;
-use App\Place;
-use App\Station;
-use App\Tag;
-use App\Type;
-use App\CancelReason;
-use App\ClassTypes;
-use App\FuelTypes;
-use App\OwnershipTypes;
-use App\UseTypes;
-use App\PeriodicFeeType;
-use App\TransmissionTypes;
-use App\DriveTypes;
-use App\Payment;
-use App\Program;
-use App\CompanyPreferences;
-use App\Driver;
-use App\Company;
-use App\ColorTypes;
-use App\Status;
-use App\Agent;
-use App\UserRole;
-use App\Rental;
-use App\Transaction;
-use App\User;
-use App\Option;
-use App\Vehicle;
+use App\Models\BookingSource;
+use App\Models\Brand;
+use App\Models\Station;
+use App\Models\Tag;
+use App\Models\Type;
+use App\Models\CancelReason;
+use App\Models\Program;
+use App\Models\CompanyPreferences;
+use App\Models\Driver;
+use App\Models\Company;
+use App\Models\Option;
+use App\Models\Vehicle;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CombinedResourceBookings extends JsonResource
