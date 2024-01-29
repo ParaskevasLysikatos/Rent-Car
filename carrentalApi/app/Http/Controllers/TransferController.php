@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Driver;
 use App\Http\Resources\TransitionCollection;
 use App\Http\Resources\TransitionResource;
 use App\Http\Resources\TransitionTypeCollection;
-use App\Rental;
-use App\Transition;
-use App\TransitionType;
-use App\Vehicle;
+use App\Models\Transition;
+use App\Models\TransitionType;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
-use Auth;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class TransferController extends Controller
 {
@@ -280,7 +277,7 @@ class TransferController extends Controller
             $tr->ci_user_id     = $data['ci_user_id'];
         }
 
-       
+
         if (is_array($data['vehicle_id'])) {
             $tr->vehicle_id     = (int)$data['vehicle_id.id'];
         } else {

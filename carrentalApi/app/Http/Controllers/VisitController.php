@@ -5,17 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ServiceDetailsCollection;
 use App\Http\Resources\ServiceVisitCollection;
 use App\Http\Resources\ServiceVisitResource;
+use App\Models\ServiceVisit;
+use App\Models\Vehicle;
 use App\ServiceDetails;
 use App\ServiceStatus;
 use App\ServiceVisitDetails;
-use App\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
-use App\ServiceVisit;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Session;
 
 class VisitController extends Controller
 {

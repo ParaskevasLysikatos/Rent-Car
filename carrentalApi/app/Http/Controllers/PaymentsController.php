@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PaymentCardsResource;
 use App\Http\Resources\PaymentMethodResource;
-use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
-use DB;
+
 use App\Http\Resources\PaymentCollection;
 use App\Http\Resources\PaymentResource;
-
-
+use App\Models\Payment;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PaymentsController extends Controller
 {

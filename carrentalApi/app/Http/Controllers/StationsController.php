@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StationRequest;
 use App\Http\Resources\StationCollection;
 use App\Http\Resources\StationResource;
-use App\Language;
-use App\Location;
-use App\Station;
-use App\StationProfile;
+use App\Models\Language;
+use App\Models\Location;
+use App\Models\Station;
+use App\Models\StationProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
 
 class StationsController extends Controller
 {

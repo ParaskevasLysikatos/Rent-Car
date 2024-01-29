@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Location;
+use App\Models\Location;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class LocationCollection extends ResourceCollection

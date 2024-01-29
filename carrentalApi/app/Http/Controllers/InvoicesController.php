@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Agent;
-use App\Company;
-use App\Driver;
 use App\Http\Resources\InvoiceCollection;
 use App\Http\Resources\InvoiceResource;
-use App\Invoice;
-use App\Payment;
-use App\Station;
-use App\Transaction;
+use App\Models\Agent;
+use App\Models\Company;
+use App\Models\Driver;
+use App\Models\Invoice;
+use App\Models\Payment;
+use App\Models\Station;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
-use Cookie;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class InvoicesController extends Controller
 {

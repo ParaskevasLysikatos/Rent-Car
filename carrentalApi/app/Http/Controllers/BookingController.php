@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Booking;
-use App\CancelReason;
-use App\Contact;
-use App\Driver;
-use App\Language;
-use App\Quote;
-use App\Document;
 use Illuminate\Support\Facades\DB;
-use Auth;
 use Illuminate\Http\Request;
-use Cookie;
-use Session;
-use Validator;
 use App\Http\Resources\BookingCollection;
 use App\Http\Resources\BookingResource;
 use App\Http\Resources\CancelReasonCollection;
 use App\Http\Resources\CancelReasonResource;
+use App\Models\Booking;
+use App\Models\CancelReason;
+use App\Models\Contact;
+use App\Models\Document;
+use App\Models\Driver;
+use App\Models\Language;
+use App\Models\Quote;
+use App\Models\Station;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {

@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Booking;
-use App\ClassTypes;
-use App\DriveTypes;
-use App\FuelTypes;
 use App\Http\Resources\ClassTypeCollection;
 use App\Http\Resources\DriveTypeCollection;
 use App\Http\Resources\FuelTypeCollection;
@@ -18,34 +14,35 @@ use App\Http\Resources\UseTypeCollection;
 use App\Http\Resources\VehicleCollection;
 use App\Http\Resources\VehicleResource;
 use App\Http\Resources\LicencePlateResource;
-
-use App\Language;
-use App\LicencePlate;
-use App\Location;
-use App\Maintenance;
-use App\OwnershipTypes;
-use App\PeriodicFee;
-use App\PeriodicFeeType;
-use App\Rental;
-use App\Station;
-use App\StationProfile;
-use App\Transition;
-use App\TransmissionTypes;
-use App\Type;
-use App\UseTypes;
-use App\Vehicle;
-use App\VehicleProfile;
-use App\VehicleReservations;
-use Auth;
+use App\Models\Booking;
+use App\Models\ClassTypes;
+use App\Models\DriveTypes;
+use App\Models\FuelTypes;
+use App\Models\Language;
+use App\Models\LicencePlate;
+use App\Models\Location;
+use App\Models\Maintenance;
+use App\Models\OwnershipTypes;
+use App\Models\PeriodicFee;
+use App\Models\PeriodicFeeType;
+use App\Models\Rental;
+use App\Models\Station;
+use App\Models\StationProfile;
+use App\Models\Transition;
+use App\Models\TransmissionTypes;
+use App\Models\Type;
+use App\Models\UseTypes;
+use App\Models\Vehicle;
+use App\Models\VehicleProfile;
+use App\Models\VehicleReservations;
 use Carbon\Carbon;
-use Cookie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
-use PeriodicFeeTypes;
-use Redirect;
-use Session;
-use Tests\Model\VehicleStatusTest;
-use URL;
 
 
 class CarController extends Controller

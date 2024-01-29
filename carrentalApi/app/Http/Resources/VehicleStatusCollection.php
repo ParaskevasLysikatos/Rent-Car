@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\VehicleStatus;
+use App\Models\VehicleStatus;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class VehicleStatusCollection extends ResourceCollection

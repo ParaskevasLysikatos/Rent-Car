@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Booking;
-use App\Invoice;
+use App\Models\Booking;
+use App\Models\Invoice;
+use App\Models\Payment;
+use App\Models\Quote;
+use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use App\Payment;
-use App\Quote;
-use App\Rental;
 use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Lang;
-use Mail;
-use PDF as PDFfacade;
-use Validator;
-use App\Http\Resources\RentalResource;
-use App\Http\Resources\BookingResource;
-use App\Http\Resources\QuoteResource;
-use App\Http\Resources\InvoiceResource;
-use App\Http\Resources\PaymentResource;
+use Illuminate\Support\Facades\Validator;
 
 class PDFController extends Controller
 {

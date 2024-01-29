@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use Cookie;
-use Session;
-use App\Agent;
-use Validator;
-use App\Contact;
+
 use App\Http\Resources\ContactCollection;
 use App\Http\Resources\ContactResource;
+use App\Models\Agent;
+use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Company;
+use App\Models\Company;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CompanyCollection extends ResourceCollection

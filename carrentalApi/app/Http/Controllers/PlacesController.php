@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PlaceCollection;
 use App\Http\Resources\PlaceResource;
-use App\Language;
-use App\Place;
-use App\PlaceProfile;
-use App\Station;
+use App\Models\Language;
+use App\Models\Place;
+use App\Models\PlaceProfile;
+use App\Models\Station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Cookie;
-use Lang;
-use Session;
 
 class PlacesController extends Controller
 {

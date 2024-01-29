@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
 use App\Http\Resources\CompanyCollection;
 use App\Http\Resources\CompanyResource;
-use App\Language;
+use App\Models\Company;
+use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
 class CompaniesController extends Controller
 {
     public function __construct()

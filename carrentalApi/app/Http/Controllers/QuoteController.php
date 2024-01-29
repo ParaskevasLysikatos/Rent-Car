@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Language;
-use App\Quote;
-use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Cookie;
-use Session;
-use Validator;
-use App\Driver;
 use App\Http\Resources\QuoteCollection;
 use App\Http\Resources\QuoteResource;
-use DB;
+use App\Models\Driver;
+use App\Models\Language;
+use App\Models\Quote;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class QuoteController extends Controller
 {

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProgramCollection;
 use App\Http\Resources\ProgramResource;
-use App\Place;
-use App\Program;
+use App\Models\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ProgramController extends Controller
 {

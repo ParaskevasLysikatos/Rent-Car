@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\OptionCollection;
 use App\Http\Resources\OptionResource;
+use App\Models\Language;
+use App\Models\Option;
+use App\Models\OptionProfile;
 use Illuminate\Http\Request;
-use App\Option;
-use App\OptionProfile;
-use App\Language;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class OptionsController extends Controller

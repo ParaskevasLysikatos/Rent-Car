@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Language;
-use App\User;
-use App\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use Session;
-use Cookie;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use App\Models\Language;
+use App\Models\User;
+use App\Models\UserRole;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+
 class UserController extends Controller
 {
     public function __construct()

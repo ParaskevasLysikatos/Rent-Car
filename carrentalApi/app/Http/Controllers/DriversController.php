@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Agent;
-use App\Company;
-use App\Contact;
-use App\Driver;
 use App\Http\Resources\CustomerResource;
 use App\Http\Resources\DriverCollection;
 use App\Http\Resources\DriverEmpCollection;
 use App\Http\Resources\DriverResource;
 use App\Http\Resources\DriverEmpResource;
-use App\Language;
+use App\Models\Contact;
+use App\Models\Driver;
+use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
-use DB;
 
 class DriversController extends Controller
 {

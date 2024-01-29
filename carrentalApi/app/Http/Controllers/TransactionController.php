@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\Transactor;
 use App\Http\Resources\TransactorCollection;
 use App\Http\Resources\TransactorRental;
-use App\Rental;
-use App\Transaction;
-use Cookie;
-use DB;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class TransactionController extends Controller
 {

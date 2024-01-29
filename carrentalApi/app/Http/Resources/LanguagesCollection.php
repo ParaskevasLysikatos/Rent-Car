@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Language;
+use App\Models\Language;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class LanguagesCollection extends ResourceCollection

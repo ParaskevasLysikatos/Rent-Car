@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Session;
-use Cookie;
-use DB;
-use App\Rental;
 
 class SignatureController extends Controller
 {

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\CategoryProfile;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
+use App\Models\Category;
+use App\Models\CategoryProfile;
+use App\Models\Language;
 use Illuminate\Http\Request;
-use App\Language;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
 use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller

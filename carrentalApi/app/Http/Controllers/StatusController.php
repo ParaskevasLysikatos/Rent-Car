@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\VehicleStatusCollection;
 use App\Http\Resources\VehicleStatusResource;
-use App\Language;
-use App\Status;
-use App\StatusProfile;
+use App\Models\Language;
+use App\Models\Status;
+use App\Models\StatusProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Cookie;
-use Session;
+
 class StatusController extends Controller
 {
     public function __construct()

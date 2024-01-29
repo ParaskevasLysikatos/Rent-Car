@@ -1,12 +1,45 @@
 <?php
 
+use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BookingSourceController;
+use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CharacteristicsController;
+use App\Http\Controllers\ColorTypesController;
+use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\CompanyPreferencesController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentTypeController;
+use App\Http\Controllers\DriversController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\LanguagesController;
+use App\Http\Controllers\LocationsController;
+use App\Http\Controllers\OptionsController;
+use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\RateCodeController;
+use App\Http\Controllers\RentalController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\SignatureController;
+use App\Http\Controllers\StationsController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\TransferController;
 use App\Http\Controllers\TypesController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleExchangeController;
+use App\Http\Controllers\VisitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -94,152 +127,152 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
           //ROLES
         Route::middleware('permissions')->prefix('roles')->group(function () {
-            Route::get('/', 'RolesController@preview_api');
-            Route::patch('/{id}', 'RolesController@update_store_api');
-            Route::get('/{id}', 'RolesController@edit');
-            Route::post('/create', 'RolesController@update_store_api');
-            Route::delete('/{id}', 'RolesController@delete_api');
+            Route::get('/',  [RolesController::class, 'preview_api']);
+            Route::patch('/{id}',  [RolesController::class, 'update_store_api']);
+            Route::get('/{id}',  [RolesController::class, 'edit']);
+            Route::post('/create',  [RolesController::class, 'update_store_api']);
+            Route::delete('/{id}',  [RolesController::class, 'delete_api']);
         });
 
         //AGENTS
         Route::prefix('agents')->group(function () {
-            Route::get('/', 'AgentsController@preview_api');
+            Route::get('/', [AgentsController::class, 'preview_api']);
 
-            Route::get('/{id}', 'AgentsController@edit');
-            Route::post('/create', 'AgentsController@update_store_api');
-            Route::patch('/{id}', 'AgentsController@update_store_api');
-            Route::delete('/{id}', 'AgentsController@delete_api');
+            Route::get('/{id}', [AgentsController::class, 'edit']);
+            Route::post('/create', [AgentsController::class, 'update_store_api']);
+            Route::patch('/{id}', [AgentsController::class, 'update_store_api']);
+            Route::delete('/{id}', [AgentsController::class, 'delete_api']);
         });
 
         //CONTACTS
         Route::prefix('contacts')->group(function () {
-            Route::get('/', 'ContactController@preview_api');
-            Route::get('/{id}', 'ContactController@edit');
-            Route::post('/create', 'ContactController@update_store_api');
-            Route::patch('/{id}', 'ContactController@update_store_api');
-            Route::delete('/{id}', 'ContactController@delete_api');
+            Route::get('/', [ContactController::class, 'preview_api']);
+            Route::get('/{id}',  [ContactController::class, 'edit']);
+            Route::post('/create',  [ContactController::class, 'update_store_api']);
+            Route::patch('/{id}',  [ContactController::class, 'update_store_api']);
+            Route::delete('/{id}',  [ContactController::class, 'delete_api']);
         });
 
 
          //LANGUAGES
         Route::middleware('permissions')->prefix('languages')->group(function () {
-            Route::get('/', 'LanguagesController@preview_api');
-            Route::patch('/{id}', 'LanguagesController@update_store_api');
-            Route::get('/{id}', 'LanguagesController@edit');
-            Route::post('/create', 'LanguagesController@update_store_api');
-            Route::delete('/{id}', 'LanguagesController@delete_api');
+            Route::get('/', [LanguagesController::class, 'preview_api']);
+            Route::patch('/{id}', [LanguagesController::class, 'update_store_api']);
+            Route::get('/{id}', [LanguagesController::class, 'edit']);
+            Route::post('/create', [LanguagesController::class, 'update_store_api']);
+            Route::delete('/{id}', [LanguagesController::class, 'delete_api']);
         });
 
         //DRIVERS
         Route::prefix('drivers')->group(function () {
-        Route::get('/emp', 'DriversController@previewEmp');
-        Route::get('/emp/{id}', 'DriversController@editEmp');
+        Route::get('/emp', [DriversController::class, 'previewEmp']);
+        Route::get('/emp/{id}',  [DriversController::class, 'editEmp']);
 
-            Route::get('/', 'DriversController@preview_api');
-            Route::get('/{id}', 'DriversController@edit');
-            Route::post('/create', 'DriversController@update_store_api');
-            Route::patch('/{id}', 'DriversController@update_store_api');
-            Route::delete('/{id}', 'DriversController@delete_api');
+            Route::get('/',  [DriversController::class, 'preview_api']);
+            Route::get('/{id}',  [DriversController::class, 'edit']);
+            Route::post('/create',  [DriversController::class, 'update_store_api']);
+            Route::patch('/{id}',  [DriversController::class, 'update_store_api']);
+            Route::delete('/{id}',  [DriversController::class, 'delete_api']);
         });
 
         //COMPANIES
         Route::prefix('companies')->group(function () {
-            Route::get('/', 'CompaniesController@preview_api');
-            Route::get('/{id}', 'CompaniesController@edit');
-            Route::post('/create', 'CompaniesController@update_store_api');
-            Route::patch('/{id}', 'CompaniesController@update_store_api');
-            Route::delete('/{id}', 'CompaniesController@delete_api');
+            Route::get('/',  [CompaniesController::class, 'preview_api']);
+            Route::get('/{id}',  [CompaniesController::class, 'edit']);
+            Route::post('/create',  [CompaniesController::class, 'update_store_api']);
+            Route::patch('/{id}',  [CompaniesController::class, 'update_store_api']);
+            Route::delete('/{id}',  [CompaniesController::class, 'delete_api']);
         });
 
         //BOOKING SOURCES
         Route::prefix('booking_sources')->group(function () {
-            Route::get('/', 'BookingSourceController@preview_api');
-            Route::get('/{id}', 'BookingSourceController@edit');
-            Route::post('/create', 'BookingSourceController@update_store_api');
-            Route::patch('/{id}', 'BookingSourceController@update_store_api');
-            Route::delete('/{id}', 'BookingSourceController@delete_api');
+            Route::get('/', [BookingSourceController::class, 'preview_api']);
+            Route::get('/{id}', [BookingSourceController::class, 'edit']);
+            Route::post('/create', [BookingSourceController::class, 'update_store_api']);
+            Route::patch('/{id}', [BookingSourceController::class, 'update_store_api']);
+            Route::delete('/{id}', [BookingSourceController::class, 'delete_api']);
         });
 
     //QUOTES
     Route::prefix('quotes')->group(function () {
-        Route::get('/', 'QuoteController@preview_api');
-        Route::get('/{id}', 'QuoteController@edit');
-        Route::post('/create', 'QuoteController@create_api');
-        Route::patch('/{id}', 'QuoteController@create_api');
-        Route::delete('/{id}', 'QuoteController@delete_api');
+        Route::get('/',  [QuoteController::class, 'preview_api']);
+        Route::get('/{id}', [QuoteController::class, 'edit']);
+        Route::post('/create', [QuoteController::class, 'create_api']);
+        Route::patch('/{id}', [QuoteController::class, 'create_api']);
+        Route::delete('/{id}', [QuoteController::class, 'delete_api']);
     });
 
 
          //BOOKINGS
          Route::prefix('bookings')->group(function () {
-            Route::get('/', 'BookingController@preview_api');
-            Route::get('/{id}', 'BookingController@edit');
-            Route::post('/create', 'BookingController@create_api');
-            Route::patch('/{id}', 'BookingController@create_api');
-            Route::delete('/{id}', 'BookingController@delete_api');
-        Route::options('/reason', 'BookingController@reason');
-        Route::get('/reason/{id}', 'BookingController@reasonGetOne');
+            Route::get('/', [BookingController::class, 'preview_api']);
+            Route::get('/{id}',  [BookingController::class, 'edit']);
+            Route::post('/create',  [BookingController::class, 'create_api']);
+            Route::patch('/{id}',  [BookingController::class, 'create_api']);
+            Route::delete('/{id}',  [BookingController::class, 'delete_api']);
+        Route::options('/reason',  [BookingController::class, 'reason']);
+        Route::get('/reason/{id}',  [BookingController::class, 'reasonGetOne']);
         });
 
 
     //RENTALS
     Route::prefix('rentals')->group(function () {
-        Route::get('/', 'RentalController@preview_api');
-        Route::get('/{id}', 'RentalController@edit');
-        Route::post('/create', 'RentalController@create_api');
-        Route::patch('/{id}', 'RentalController@create_api');
-        Route::delete('/{id}', 'RentalController@delete_api');
+        Route::get('/', [RentalController::class, 'preview_api']);
+        Route::get('/{id}',  [RentalController::class, 'edit']);
+        Route::post('/create',  [RentalController::class, 'create_api']);
+        Route::patch('/{id}',  [RentalController::class, 'create_api']);
+        Route::delete('/{id}',  [RentalController::class, 'delete_api']);
 
         //signature
-        Route::post('/signatureExcess', 'SignatureController@uploadSignatureExcess');
-        Route::post('/signatureExcDelete', 'SignatureController@deleteSignatureExcess');
-        Route::post('/signatureSee1', 'SignatureController@SignatureSee1');
+        Route::post('/signatureExcess', [SignatureController::class, 'uploadSignatureExcess']);
+        Route::post('/signatureExcDelete',  [SignatureController::class, 'deleteSignatureExcess']);
+        Route::post('/signatureSee1',  [SignatureController::class, 'SignatureSee1']);
 
-        Route::post('/signatureMain', 'SignatureController@uploadSignatureMain');
-        Route::post('/signatureMDelete', 'SignatureController@deleteSignatureMain');
-        Route::post('/signatureSee2', 'SignatureController@SignatureSee2');
+        Route::post('/signatureMain',  [SignatureController::class, 'uploadSignatureMain']);
+        Route::post('/signatureMDelete',  [SignatureController::class, 'deleteSignatureMain']);
+        Route::post('/signatureSee2',  [SignatureController::class, 'SignatureSee2']);
 
-        Route::post('/signatureSecDriver', 'SignatureController@uploadSignatureSecDriver');
-        Route::post('/signatureSecDelete', 'SignatureController@deleteSignatureSecDriver');
-        Route::post('/signatureSee3', 'SignatureController@SignatureSee3');
+        Route::post('/signatureSecDriver',  [SignatureController::class, 'uploadSignatureSecDriver']);
+        Route::post('/signatureSecDelete',  [SignatureController::class, 'deleteSignatureSecDriver']);
+        Route::post('/signatureSee3',  [SignatureController::class, 'SignatureSee3']);
     });
 
         //BRANDS
         Route::prefix('brands')->group(function () {
-        Route::post('/upload', 'BrandsController@upload');
-        Route::delete('/uploadRemove/{id}', 'BrandsController@uploadRemove');
-            Route::get('/', 'BrandsController@preview_api');
-            Route::get('/{id}', 'BrandsController@edit');
-            Route::post('/create', 'BrandsController@update_store_api');
-            Route::patch('/{id}', 'BrandsController@update_store_api');
-            Route::delete('/{id}', 'BrandsController@delete_api');
+        Route::post('/upload',  [BrandsController::class, 'upload']);
+        Route::delete('/uploadRemove/{id}',  [BrandsController::class, 'uploadRemove']);
+            Route::get('/',  [BrandsController::class, 'preview_api']);
+            Route::get('/{id}',  [BrandsController::class, 'edit']);
+            Route::post('/create',  [BrandsController::class, 'update_store_api']);
+            Route::patch('/{id}',  [BrandsController::class, 'update_store_api']);
+            Route::delete('/{id}',  [BrandsController::class, 'delete_api']);
         });
 
 
         //VEHICLES (Car controller)
         Route::prefix('vehicles')->group(function () {
-            Route::get('/class', 'CarController@class');
-            Route::get('/fuel', 'CarController@fuel');
-            Route::get('/ownership', 'CarController@ownership');
-            Route::get('/use', 'CarController@use');
-            Route::get('/periodicFeeTypes', 'CarController@periodicFeeTypes');
-            Route::get('/transmission', 'CarController@transmission');
-            Route::get('/drive_type', 'CarController@drive_type');
+            Route::get('/class', [CarController::class, 'class']);
+            Route::get('/fuel', [CarController::class, 'fuel']);
+            Route::get('/ownership', [CarController::class, 'ownership']);
+            Route::get('/use', [CarController::class, 'use']);
+            Route::get('/periodicFeeTypes', [CarController::class, 'periodicFeeTypes']);
+            Route::get('/transmission', [CarController::class, 'transmission']);
+            Route::get('/drive_type', [CarController::class, 'drive_type']);
 
-            Route::get('/', 'CarController@preview_api');
-            Route::get('/{id}', 'CarController@edit');
-            Route::post('/create', 'CarController@update_store_api');
-            Route::patch('/{id}', 'CarController@update_store_api');
-            Route::delete('/{id}', 'CarController@delete_api');
+            Route::get('/', [CarController::class, 'preview_api']);
+            Route::get('/{id}', [CarController::class, 'edit']);
+            Route::post('/create', [CarController::class, 'update_store_api']);
+            Route::patch('/{id}', [CarController::class, 'update_store_api']);
+            Route::delete('/{id}', [CarController::class, 'delete_api']);
         });
 
            //COLOR TYPES
            Route::middleware('permissions')->prefix('color_types')->group(function() {
-            Route::get('/', 'ColorTypesController@preview_api');
-            Route::patch('/{id}', 'ColorTypesController@update_store_api');
-            Route::post('/create', 'ColorTypesController@update_store_api');
-            Route::get('/{id}', 'ColorTypesController@edit');
-            Route::delete('/{id}', 'ColorTypesController@delete_api');
+            Route::get('/', [ColorTypesController::class, 'preview_api']);
+            Route::patch('/{id}', [ColorTypesController::class, 'update_store_api']);
+            Route::post('/create', [ColorTypesController::class, 'update_store_api']);
+            Route::get('/{id}', [ColorTypesController::class, 'edit']);
+            Route::delete('/{id}', [ColorTypesController::class, 'delete_api']);
         });
 
         //LICENCE PLATE
@@ -252,95 +285,95 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
         //LOCATIONS
         Route::prefix('locations')->group(function () {
-            Route::get('/', 'LocationsController@preview_api');
-            Route::get('/{id}', 'LocationsController@edit');
-            Route::post('/create', 'LocationsController@store');
-            Route::patch('/{id}', 'LocationsController@update');
-            Route::delete('/{id}', 'LocationsController@delete_api');
+            Route::get('/',  [LocationsController::class, 'preview_api']);
+            Route::get('/{id}',  [LocationsController::class, 'edit']);
+            Route::post('/create',  [LocationsController::class, 'store']);
+            Route::patch('/{id}',  [LocationsController::class, 'update']);
+            Route::delete('/{id}',  [LocationsController::class, 'delete_api']);
         });
 
         //STATIONS
         Route::prefix('stations')->group(function () {
-            Route::get('/', 'StationsController@preview_api');
-            Route::get('/{id}', 'StationsController@edit');
-            Route::post('/create', 'StationsController@store_api');
-            Route::patch('/{id}', 'StationsController@update');
-            Route::delete('/{id}', 'StationsController@delete_api');
+            Route::get('/',  [StationsController::class, 'preview_api']);
+            Route::get('/{id}',  [StationsController::class, 'edit']);
+            Route::post('/create',  [StationsController::class, 'store_api']);
+            Route::patch('/{id}',  [StationsController::class, 'update']);
+            Route::delete('/{id}',  [StationsController::class, 'delete_api']);
         });
 
         //PLACES
         Route::prefix('places')->group(function () {
-            Route::get('/', 'PlacesController@preview_api');
-            Route::get('/{id}', 'PlacesController@edit');
-            Route::post('/create', 'PlacesController@store');
-            Route::patch('/{id}', 'PlacesController@update');
-            Route::delete('/{id}', 'PlacesController@delete_api');
+            Route::get('/', [PlacesController::class, 'preview_api']);
+            Route::get('/{id}', [PlacesController::class, 'edit']);
+            Route::post('/create', [PlacesController::class, 'store']);
+            Route::patch('/{id}', [PlacesController::class, 'update']);
+            Route::delete('/{id}', [PlacesController::class, 'delete_api']);
         });
 
         //OPTIONS
         Route::prefix('options')->group(function () {
-            Route::get('/', 'OptionsController@preview_api');
-        Route::delete('/{option_type}/uploadRemove/{id}', 'OptionsController@uploadRemove');
-        Route::post('/{option_type}/upload', 'OptionsController@upload');
-            Route::get('/{option_type}', 'OptionsController@preview_api');
-            Route::get('/{option_type}/{id}', 'OptionsController@edit');
-            Route::post('/{option_type}/create', 'OptionsController@update_store_api');
-            Route::patch('/{option_type}/{id}', 'OptionsController@update_store_api');
-            Route::delete('/{option_type}/{id}', 'OptionsController@delete_api');
+            Route::get('/', [OptionsController::class, 'preview_api']);
+        Route::delete('/{option_type}/uploadRemove/{id}', [OptionsController::class, 'uploadRemove']);
+        Route::post('/{option_type}/upload', [OptionsController::class, 'upload']);
+            Route::get('/{option_type}', [OptionsController::class, 'preview_api']);
+            Route::get('/{option_type}/{id}', [OptionsController::class, 'edit']);
+            Route::post('/{option_type}/create', [OptionsController::class, 'update_store_api']);
+            Route::patch('/{option_type}/{id}', [OptionsController::class, 'update_store_api']);
+            Route::delete('/{option_type}/{id}', [OptionsController::class, 'delete_api']);
         });
 
          //CATEGORIES
          Route::middleware('permissions')->prefix('categories')->group(function () {
-        Route::delete('/uploadRemove/{id}', 'CategoriesController@uploadRemove');
-        Route::post('/upload', 'CategoriesController@upload');
-            Route::get('/', 'CategoriesController@preview_api');
-            Route::get('/{id}', 'CategoriesController@edit');
-            Route::post('/create', 'CategoriesController@update_store_api');
-            Route::patch('/{id}', 'CategoriesController@update_store_api');
-            Route::delete('/{id}', 'CategoriesController@delete_api');
+        Route::delete('/uploadRemove/{id}', [CategoriesController::class, 'uploadRemove']);
+        Route::post('/upload', [CategoriesController::class, 'upload']);
+            Route::get('/', [CategoriesController::class, 'preview_api']);
+            Route::get('/{id}', [CategoriesController::class, 'edit']);
+            Route::post('/create', [CategoriesController::class, 'update_store_api']);
+            Route::patch('/{id}', [CategoriesController::class, 'update_store_api']);
+            Route::delete('/{id}', [CategoriesController::class, 'delete_api']);
         });
 
          //CHARACTERISTICS
          Route::prefix('characteristics')->group(function () {
-        Route::delete('/uploadRemove/{id}', 'CharacteristicsController@uploadRemove');
-        Route::post('/upload', 'CharacteristicsController@upload');
-                Route::get('/', 'CharacteristicsController@preview_api');
-                Route::get('/{id}', 'CharacteristicsController@edit');
-                Route::post('/create', 'CharacteristicsController@update_store_api');
-                Route::patch('/{id}', 'CharacteristicsController@update_store_api');
-                Route::delete('/{id}', 'CharacteristicsController@delete_api');
+        Route::delete('/uploadRemove/{id}', [CharacteristicsController::class, 'uploadRemove']);
+        Route::post('/upload',  [CharacteristicsController::class, 'upload']);
+                Route::get('/',  [CharacteristicsController::class, 'preview_api']);
+                Route::get('/{id}',  [CharacteristicsController::class, 'edit']);
+                Route::post('/create',  [CharacteristicsController::class, 'update_store_api']);
+                Route::patch('/{id}',  [CharacteristicsController::class, 'update_store_api']);
+                Route::delete('/{id}',  [CharacteristicsController::class, 'delete_api']);
         });
 
         //VISIT
         Route::prefix('visit')->group(function () {
-            Route::get('/service-details', 'VisitController@service_details');
-            Route::get('/service_status', 'VisitController@service_status');
+            Route::get('/service-details',  [VisitController::class, 'service_details']);
+            Route::get('/service_status',  [VisitController::class, 'service_status']);
 
-            Route::get('/', 'VisitController@preview_api');
-            Route::get('/{id}', 'VisitController@edit');
-            Route::post('/create', 'VisitController@store_api');
-            Route::patch('/{id}', 'VisitController@update_api');
-            Route::delete('/{id}', 'VisitController@delete_api');
+            Route::get('/',  [VisitController::class, 'preview_api']);
+            Route::get('/{id}',  [VisitController::class, 'edit']);
+            Route::post('/create',  [VisitController::class, 'store_api']);
+            Route::patch('/{id}',  [VisitController::class, 'update_api']);
+            Route::delete('/{id}',  [VisitController::class, 'delete_api']);
         });
 
 
          //RATE CODES
         Route::prefix('rate-code')->group(function() {
-            Route::get('/', 'RateCodeController@preview_api');
-            Route::post('/create', 'RateCodeController@update_store_api');
-            Route::get('/{id}', 'RateCodeController@edit');
-            Route::patch('/{id}', 'RateCodeController@update_store_api');
-            Route::delete('/{id}', 'RateCodeController@delete_api');
+            Route::get('/', [RateCodeController::class, 'preview_api']);
+            Route::post('/create',  [RateCodeController::class, 'update_store_api']);
+            Route::get('/{id}',  [RateCodeController::class, 'edit']);
+            Route::patch('/{id}',  [RateCodeController::class, 'update_store_api']);
+            Route::delete('/{id}',  [RateCodeController::class, 'delete_api']);
         });
 
 
         //STATUS
         Route::prefix('status')->group(function () {
-            Route::get('/', 'StatusController@preview_api');
-            Route::post('/create', 'StatusController@update_store_api');
-            Route::get('/{id}', 'StatusController@edit');
-            Route::patch('/{id}', 'StatusController@update_store_api');
-            Route::delete('/{id}', 'StatusController@delete_api');
+            Route::get('/', [StatusController::class, 'preview_api']);
+            Route::post('/create', [StatusController::class, 'update_store_api']);
+            Route::get('/{id}', [StatusController::class, 'edit']);
+            Route::patch('/{id}', [StatusController::class, 'update_store_api']);
+            Route::delete('/{id}', [StatusController::class, 'delete_api']);
         });
 
     //TRANSITION
@@ -348,16 +381,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::group([
             'middleware' => 'permissions'
         ], function () {
-            Route::delete('/{id}', 'TransferController@delete_api');
+            Route::delete('/{id}', [TransferController::class, 'delete_api']);
         });
         Route::group([
             'middleware' => 'permissions:editor'
         ], function () {
-            Route::get('/type', 'TransferController@transition_type');
-            Route::get('/', 'TransferController@preview_api');
-            Route::post('/create', 'TransferController@update_store_api');
-            Route::patch('/{id}', 'TransferController@update_store_api');
-            Route::get('/{id}', 'TransferController@edit');
+            Route::get('/type',  [TransferController::class, 'transition_type']);
+            Route::get('/',  [TransferController::class, 'preview_api']);
+            Route::post('/create',  [TransferController::class, 'update_store_api']);
+            Route::patch('/{id}',  [TransferController::class, 'update_store_api']);
+            Route::get('/{id}',  [TransferController::class, 'edit']);
         });
     });
 
@@ -367,15 +400,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::group([
             'middleware' => 'permissions'
         ], function () {
-            Route::delete('/{id}', 'VehicleExchangeController@delete_api');
+            Route::delete('/{id}', [VehicleExchangeController::class, 'delete_api']);
         });
         Route::group([
             'middleware' => 'permissions:editor'
         ], function () {
-            Route::get('/', 'VehicleExchangeController@preview_api');
-            Route::get('/{id}', 'VehicleExchangeController@edit_api');
-            Route::post('/create', 'VehicleExchangeController@store_update_api');
-            Route::patch('/{id}', 'VehicleExchangeController@store_update_api');
+            Route::get('/', [VehicleExchangeController::class, 'preview_api']);
+            Route::get('/{id}', [VehicleExchangeController::class, 'edit_api']);
+            Route::post('/create', [VehicleExchangeController::class, 'store_update_api']);
+            Route::patch('/{id}', [VehicleExchangeController::class, 'store_update_api']);
         });
     });
 
@@ -383,80 +416,79 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
         //PAYMENTS
         Route::prefix('payments')->group(function () {
-            Route::get('/methods', 'PaymentsController@getMethods');
-            Route::get('/cards', 'PaymentsController@getCards');
-            Route::get('/', 'PaymentsController@preview_api');
-            Route::get('/{payment_type}', 'PaymentsController@preview_api');
-            Route::get('/{payment_type}/{id}', 'PaymentsController@edit');
-            Route::post('/{payment_type}/create', 'PaymentsController@update_store_api');
-            Route::patch('/{payment_type}/{id}', 'PaymentsController@update_store_api');
-            Route::delete('/{payment_type}/{id}', 'PaymentsController@delete_api');
+            Route::get('/methods', [PaymentsController::class, 'getMethods']);
+            Route::get('/cards', [PaymentsController::class, 'getCards']);
+            Route::get('/', [PaymentsController::class, 'preview_api']);
+            Route::get('/{payment_type}', [PaymentsController::class, 'preview_api']);
+            Route::get('/{payment_type}/{id}', [PaymentsController::class, 'edit']);
+            Route::post('/{payment_type}/create', [PaymentsController::class, 'update_store_api']);
+            Route::patch('/{payment_type}/{id}', [PaymentsController::class, 'update_store_api']);
+            Route::delete('/{payment_type}/{id}', [PaymentsController::class, 'delete_api']);
         });
 
         //PROGRAMS
         Route::prefix('programs')->group(function () {
-            Route::get('/', 'ProgramController@preview_api');
-            Route::get('/{id}', 'ProgramController@edit');
+            Route::get('/', [ProgramController::class, 'preview_api']);
+            Route::get('/{id}',  [ProgramController::class, 'edit']);
         });
 
 
           //INVOICES
           Route::middleware('permissions')->prefix('invoices')->group(function () {
-        Route::post('/badPrinting', 'InvoicesController@badPrinting');
-            Route::get('/', 'InvoicesController@preview_api');
-            Route::get('/{id}', 'InvoicesController@edit');
-            Route::delete('/{id}', 'InvoicesController@delete_api');
-            Route::post('/create', 'InvoicesController@create_api');
-            Route::patch('/{id}', 'InvoicesController@update_api');
+        Route::post('/badPrinting',  [InvoicesController::class, 'badPrinting']);
+            Route::get('/',  [InvoicesController::class, 'preview_api']);
+            Route::get('/{id}',  [InvoicesController::class, 'edit']);
+            Route::delete('/{id}',  [InvoicesController::class, 'delete_api']);
+            Route::post('/create',  [InvoicesController::class, 'create_api']);
+            Route::patch('/{id}',  [InvoicesController::class, 'update_api']);
         });
 
 
 
         //COMPANY PREFERENCES
         Route::prefix('company_preferences')->group(function() {
-            Route::get('/', 'CompanyPreferencesController@edit');
-            Route::post('/', 'CompanyPreferencesController@update_api');
+            Route::get('/',  [CompanyPreferencesController::class, 'edit']);
+            Route::post('/',  [CompanyPreferencesController::class, 'update_api']);
         });
 
         //USERS
         Route::prefix('users')->group(function () {
-            Route::get('/', 'UserController@preview_api');
-            Route::get('/{id}', 'UserController@edit');
-            Route::post('/create', 'UserController@update_store_api');
-            Route::patch('/{id}', 'UserController@update_store_api');
-            Route::delete('/{id}', 'UserController@delete_api');
+            Route::get('/',  [UserController::class, 'preview_api']);
+            Route::get('/{id}',  [UserController::class, 'edit']);
+            Route::post('/create',  [UserController::class, 'update_store_api']);
+            Route::patch('/{id}',  [UserController::class, 'update_store_api']);
+            Route::delete('/{id}',  [UserController::class, 'delete_api']);
         });
 
         //SUB ACCOUNTS
         Route::prefix('subaccounts')->group(function() {
-            Route::get('/', 'AgentsController@search_subaccount_with_agent_ajax2');
+            Route::get('/',  [AgentsController::class, 'search_subaccount_with_agent_ajax2']);
         });
 
           //CUSTOMER
         Route::prefix('customer')->group(function() {
-            Route::get('/', 'TransactionController@search_transactor_ajax2');
+            Route::get('/', [TransactionController::class, 'search_transactor_ajax2']);
         });
 
         //TAGS
         Route::prefix('tags')->group(function() {
-            Route::get('/', 'TagController@preview_api');
+            Route::get('/',  [TagController::class, 'preview_api']);
         });
 
     // PDF-Mail
-    Route::get('/create-payment-pdf/{id}', 'PDFController@create_payment_api');
-    Route::post('/mail-payment-pdf', 'PDFController@mail_payment');//same as v1
+    Route::get('/create-payment-pdf/{id}',  [PDFController::class, 'create_payment_api']);
+    Route::post('/mail-payment-pdf',  [PDFController::class, 'mail_payment']);//same as v1
 
-    Route::get('/create-invoice-pdf/{id}', 'PDFController@create_invoice_api');
-    Route::post('/mail-invoice-pdf', 'PDFController@mail_invoice'); //same as v1
+    Route::get('/create-invoice-pdf/{id}',  [PDFController::class, 'create_invoice_api']);
+    Route::post('/mail-invoice-pdf',  [PDFController::class, 'mail_invoice']); //same as v1
 
-    Route::get('/create-booking-pdf/{id}', 'PDFController@create_booking_api');
-    Route::post('/mail-booking-pdf', 'PDFController@mail_booking');//same as v1
+    Route::get('/create-booking-pdf/{id}',  [PDFController::class, 'create_booking_api']);
+    Route::post('/mail-booking-pdf',  [PDFController::class, 'mail_booking']);//same as v1
 
-    Route::get('/create-quote-pdf/{id}', 'PDFController@create_quote_api');
-    Route::post('/mail-quote-pdf', 'PDFController@mail_quote'); //same as v1
+    Route::get('/create-quote-pdf/{id}',  [PDFController::class, 'create_quote_api']);
+    Route::post('/mail-quote-pdf',  [PDFController::class, 'mail_quote']); //same as v1
 
-    Route::get('/create-rental-pdf/{id}', 'PDFController@create_rental_api');
-    Route::post('/mail-rental-pdf', 'PDFController@mail_rental');//same as v1
-
+    Route::get('/create-rental-pdf/{id}',  [PDFController::class, 'create_rental_api']);
+    Route::post('/mail-rental-pdf',  [PDFController::class, 'mail_rental']);//same as v1
 
     });
