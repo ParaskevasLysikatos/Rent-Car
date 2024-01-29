@@ -20,12 +20,15 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router, private notificationSrv: NotificationService) {
     this.per_page = Number(localStorage.getItem('per_page') ?? 0);
-    setInterval(() => {
-      if(this.isAuth()){
-        this.refresh();
-        this.setPerPage(this.getPerPage());
-      }
-    }, 1000 * 60 *30);//30 min sec *60 = 1 min *30=half hour
+
+    // setInterval(() => {
+    //   if(this.isAuth()){
+    //     this.refresh();
+    //     this.setPerPage(this.getPerPage());
+    //   }
+    // }, 1000 * 60 *30);//30 min sec *60 = 1 min *30=half hour
+    const currentDatetime = new Date();
+    localStorage.setItem('access_token_exp', currentDatetime.toISOString());
   }
 
   login(email: string, password: string): Observable<IAuth> | Observable<any> {
@@ -86,8 +89,9 @@ export class AuthService {
   }
 
   private isTokenExpired(token: string) {
-    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+   // const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+   // return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+   return this.hasWholeDayPassed();
   }
 
   isAuth() {
@@ -98,6 +102,23 @@ export class AuthService {
 
   resetPassword(email: string): Observable<string> {
     return this.http.post<string>(this.url + '/resetPassword', { email });
+  }
+
+  // Function to check if a whole day has passed since the last saved datetime
+  hasWholeDayPassed() {
+  const lastDatetimeString = localStorage.getItem('access_token_exp');
+
+    const lastDatetime = new Date(lastDatetimeString);
+    const currentDatetime = new Date();
+
+    // Calculate the difference in milliseconds
+    const timeDifference = currentDatetime.getTime() - lastDatetime.getTime();
+
+    // Calculate the number of milliseconds in a day
+    const oneDayInMillis = 24 * 60 * 60 * 1000;
+
+    // Check if a whole day has passed
+    return timeDifference >= oneDayInMillis;
   }
 
 }

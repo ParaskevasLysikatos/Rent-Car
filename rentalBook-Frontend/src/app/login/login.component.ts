@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     let signedUser = localStorage.getItem('loggedUser');
     let rememberMe = localStorage.getItem('rememberMe');
     if (access!=null && signedUser!=null){
-     if( this.authSrv.isAuth() && rememberMe!='null'){
+     if( this.authSrv.isAuth() || (rememberMe!='null' && signedUser!=null)){
        this.router.navigate([this.returnUrl]);
        this.authSrv.getUser();
      }

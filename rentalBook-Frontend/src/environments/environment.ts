@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //apiUrl: 'https://rentalbook.eu/eml/public/api',
-  apiUrl: 'http://localhost/carrentalApi/public/api'
+  apiUrl: 'http://localhost/RentACar-new/carrentalApi/public/api'
 };
 
 /*
