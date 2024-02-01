@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //apiUrl: 'https://rentalbook.eu/eml/public/api',
   apiUrl: 'http://localhost/RentACar-new/carrentalApi/public/api'
+ //apiUrl: 'https://rent-car-production.up.railway.app/api'
 };
 
 /*

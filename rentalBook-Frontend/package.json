@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
+    "start2": "ng serve",
     "build": "ng build",
     "build:develop": "ng build --configuration=develop",
     "build:hash": "ng build --output-hashing=all",
