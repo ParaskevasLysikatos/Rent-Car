@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'rent-car-production.up.railway.app/api'
+  apiUrl: 'https://rent-car-production.up.railway.app/api'
 };
 
 /*
