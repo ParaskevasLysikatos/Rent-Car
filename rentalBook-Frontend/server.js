@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static('./dist/nov-movies'));
 
 app.get('/*', (req, res) =>
-        res.sendFile('index.html', { root: './dist/nov-movies/' }),
+        res.sendFile('index.html', { root: './dist/rentalbook-frontend/' }),
         );
 
 app.listen(process.env.PORT || 8080);
