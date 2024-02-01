@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/nov-movies'));
+app.use(express.static('./dist/rentalbook-frontend'));
 
 app.get('/*', (req, res) =>
         res.sendFile('index.html', { root: './dist/rentalbook-frontend/' }),
