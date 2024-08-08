@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\BookingSource;
-use App\BookingSourceProfile;
 use App\Http\Resources\SourceCollection;
 use App\Http\Resources\SourceResource;
-use Cookie;
+use App\Models\BookingSource;
+use App\Models\BookingSourceProfile;
 use Illuminate\Http\Request;
-use Session;
-use Validator;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class BookingSourceController extends Controller
 {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\CompanyPreferences;
 use App\Http\Resources\CompanyPreferencesResource;
-use App\Language;
+use App\Models\CompanyPreferences;
+use App\Models\Language;
 use Illuminate\Http\Request;
-use Session;
-use Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyPreferencesController extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Category;
+use App\Models\Category;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use DB;
+
 
 class CategoryCollection extends ResourceCollection
 {

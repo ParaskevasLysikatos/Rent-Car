@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\RolesCollection;
 use App\Http\Resources\RolesResource;
-use App\Language;
-use App\UserRole;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+
 class RolesController extends Controller
 {
     public function __construct()

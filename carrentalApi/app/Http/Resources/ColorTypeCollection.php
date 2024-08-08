@@ -2,9 +2,8 @@
 
 namespace App\Http\Resources;
 
-use App\ColorTypes;
+use App\Models\ColorTypes;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use DB;
 
 class ColorTypeCollection extends ResourceCollection
 {

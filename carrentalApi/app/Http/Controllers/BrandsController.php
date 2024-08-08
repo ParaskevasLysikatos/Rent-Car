@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
-use App\Brand;
-use App\BrandProfile;
 use App\Http\Resources\BrandCollection;
 use App\Http\Resources\BrandResource;
-use App\PrintingFormsColor;
+use App\Models\Brand;
+use App\Models\BrandProfile;
+use App\Models\Language;
+use App\Models\PrintingFormsColor;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class BrandsController extends Controller

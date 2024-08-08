@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Language;
 use Illuminate\Http\Request;
-use App\Characteristic;
-use App\CharacteristicProfile;
 use App\Http\Resources\CharacteristicsCollection;
 use App\Http\Resources\CharacteristicsResource;
+use App\Models\Characteristic;
+use App\Models\CharacteristicProfile;
+use App\Models\Language;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Session;
-use Cookie;
 use Illuminate\Support\Facades\Storage;
 
 class CharacteristicsController extends Controller

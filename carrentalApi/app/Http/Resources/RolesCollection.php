@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\UserRole;
+use App\Models\UserRole;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class RolesCollection extends ResourceCollection

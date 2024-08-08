@@ -4,17 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Agent;
+
 use App\Http\Resources\AgentCollection;
 use App\Http\Resources\AgentResource;
-use App\Http\Resources\ProgramCollection;
-use App\Http\Resources\ProgramResource;
 use App\Http\Resources\SubAccount;
 use App\Http\Resources\SubAccountResource;
-use App\Program;
-use App\ProgramProfile;
-use Cookie;
-use Session;
+use App\Models\Agent;
+use App\Models\ProgramProfile;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class AgentsController extends Controller
 {

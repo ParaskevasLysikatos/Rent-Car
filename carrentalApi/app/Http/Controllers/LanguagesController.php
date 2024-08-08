@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\LanguagesCollection;
 use App\Http\Resources\LanguagesResource;
-use App\Language;
+use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
-use Cookie;
 use Illuminate\Support\Facades\Session;
 
 class LanguagesController extends Controller

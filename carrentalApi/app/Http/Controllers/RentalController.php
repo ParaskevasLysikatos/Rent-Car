@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Cookie;
-use Session;
-use Validator;
-use App\Driver;
-use App\Rental;
-use App\Booking;
 use App\Http\Resources\RentalCollection;
 use App\Http\Resources\RentalResource;
-use App\Language;
-use App\Station;
-use App\Transaction;
+use App\Models\Booking;
+use App\Models\Document;
+use App\Models\Driver;
+use App\Models\Language;
+use App\Models\Rental;
+use App\Models\Station;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
-use App\Document;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class RentalController extends Controller
 {

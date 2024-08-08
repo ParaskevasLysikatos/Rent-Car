@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Booking;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Booking;
 class BookingCollection extends ResourceCollection
 {
     /**

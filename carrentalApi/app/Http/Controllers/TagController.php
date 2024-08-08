@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TagCollection;
-use App\Tag;
-use Cookie;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class TagController extends Controller
 {

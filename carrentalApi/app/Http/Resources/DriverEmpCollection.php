@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Driver;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DriverEmpCollection extends ResourceCollection

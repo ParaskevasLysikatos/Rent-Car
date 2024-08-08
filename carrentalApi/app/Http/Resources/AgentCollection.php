@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Agent;
+use App\Models\Agent;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class AgentCollection extends ResourceCollection

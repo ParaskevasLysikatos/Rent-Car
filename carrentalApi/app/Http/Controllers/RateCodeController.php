@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\RateCodesCollection;
 use App\Http\Resources\RateCodesResource;
-use App\Language;
-use App\RateCode;
-use App\RateCodesProfile;
-use Cookie;
+use App\Models\Language;
+use App\Models\RateCode;
+use App\Models\RateCodesProfile;
 use Illuminate\Http\Request;
-use Session;
-use Validator;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class RateCodeController extends Controller
 {

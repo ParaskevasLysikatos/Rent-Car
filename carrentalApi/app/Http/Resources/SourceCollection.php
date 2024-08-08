@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\BookingSource;
+use App\Models\BookingSource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SourceCollection extends ResourceCollection

@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ExchangeVehicleCreateRequest;
 use App\Http\Resources\VehicleExchangeCollection;
 use App\Http\Resources\VehicleExchangeResource;
-use App\Rental;
-use App\Vehicle;
-use App\VehicleExchange;
-use Auth;
-use Cookie;
+use App\Models\Rental;
+use App\Models\Vehicle;
+use App\Models\VehicleExchange;
 use Exception;
 use Illuminate\Http\Request;
-use Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
 class VehicleExchangeController extends Controller

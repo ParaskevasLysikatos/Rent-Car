@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ColorTypes;
 use App\Http\Resources\ColorTypeCollection;
 use App\Http\Resources\ColorTypeResource;
-use Cookie;
+use App\Models\ColorTypes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ColorTypesController extends Controller
 {
@@ -68,5 +68,5 @@ class ColorTypesController extends Controller
             return new ColorTypeResource($color_type);
     }
 
-    
+
 }

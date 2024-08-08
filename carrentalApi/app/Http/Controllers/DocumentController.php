@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\DocumentType;
-use App\Language;
+use App\Models\DocumentType;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use Cookie;
-use App\Document;
-use App\DocumentLink;
+use App\Models\Document;
 use App\Http\Resources\DocumentCollection;
 use App\Http\Resources\DocumentResource;
+use App\Models\ImageLink;
 use Auth;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use File;
 
 class DocumentController extends Controller

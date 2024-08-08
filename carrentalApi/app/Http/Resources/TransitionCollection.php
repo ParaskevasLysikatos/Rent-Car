@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Transition;
+use App\Models\Transition;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class TransitionCollection extends ResourceCollection

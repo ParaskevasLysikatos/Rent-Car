@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Brand;
+use App\Models\Brand;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BrandCollection extends ResourceCollection

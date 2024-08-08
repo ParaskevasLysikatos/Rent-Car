@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Station;
+use App\Models\Station;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class StationCollection extends ResourceCollection

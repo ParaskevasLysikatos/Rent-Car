@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Characteristic;
-use App\Option;
-use App\TypeProfile;
-use App\Vehicle;
+use App\Models\Category;
+use App\Models\Characteristic;
+use App\Models\Option;
+use App\Models\TypeProfile;
 use Illuminate\Http\Request;
-use App\Type;
-use App\Language;
+use App\Models\Type;
+use App\Models\Language;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use Cookie;

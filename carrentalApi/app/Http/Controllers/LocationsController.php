@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\LocationCollection;
 use App\Http\Resources\LocationResource;
-use App\Location;
+use App\Models\Language;
+use App\Models\Location;
+use App\Models\LocationProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use App\Language;
-use App\LocationProfile;
-use Session;
-use Cookie;
+
 class LocationsController extends Controller
 {
     public function __construct()

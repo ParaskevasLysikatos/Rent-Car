@@ -2,17 +2,17 @@
 
 namespace App\Http\Resources;
 
-use App\Station;
-use App\Type;
-use App\ClassTypes;
-use App\FuelTypes;
-use App\OwnershipTypes;
-use App\UseTypes;
-use App\PeriodicFeeType;
-use App\TransmissionTypes;
-use App\DriveTypes;
-use App\ColorTypes;
-use App\Status;
+use App\Models\Station;
+use App\Models\Type;
+use App\Models\ClassTypes;
+use App\Models\FuelTypes;
+use App\Models\OwnershipTypes;
+use App\Models\UseTypes;
+use App\Models\PeriodicFeeType;
+use App\Models\TransmissionTypes;
+use App\Models\DriveTypes;
+use App\Models\ColorTypes;
+use App\Models\Status;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CombinedResourceVehicles extends JsonResource
